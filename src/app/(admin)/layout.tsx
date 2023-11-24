@@ -14,7 +14,7 @@ export default function AdminLayout({
       <div className="flex w-full min-h-screen">
         <Sidebar
           playlists={playlists}
-          className="hidden lg:block  w-[200px] fixed left-0  top-16 bottom-0 "
+          className="block w-[200px] fixed left-0  top-16 bottom-0 "
         />
 
         <main className="w-[calc(100%-200px)] ml-[200px] bg-gray-50 ">
