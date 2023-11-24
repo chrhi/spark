@@ -7,6 +7,7 @@ import {
   Tag,
   BookHeart,
   LineChart,
+  MoveLeft,
 } from "lucide-react";
 
 export const Icons = {
@@ -22,4 +23,5 @@ export const Icons = {
   Prodcuts: Tag,
   Banner: BookHeart,
   Analytics: LineChart,
+  left : MoveLeft
 };
