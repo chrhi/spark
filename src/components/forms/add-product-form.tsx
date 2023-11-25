@@ -23,10 +23,47 @@ import {
 import { Textarea } from "../ui/textarea";
 import "cropperjs/dist/cropper.css";
 import { FileDialog } from "@/app/(admin)/_components/file-uploader";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  UncontrolledFormMessage,
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { productSchema } from "@/lib/validators/product";
+import React from "react";
+import { FileWithPreview } from "@/types";
+
+type Inputs = z.infer<typeof productSchema>;
+
+const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 interface AddProductFormAbdullahProps {}
 
 const AddProductForm: FC = ({}) => {
+  const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
+
+  const [isPending, startTransition] = React.useTransition();
+
+  const { isUploading, startUpload } = useUploadThing("productImage");
+
+  const form = useForm<Inputs>({
+    resolver: zodResolver(productSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      price: "",
+      inventory: NaN,
+      category: "skateboards",
+      subcategory: "",
+      images: [],
+    },
+  });
+
   return (
     <form>
       <div className="w-full space-x-4  grid grid-cols-3">

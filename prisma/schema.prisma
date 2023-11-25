@@ -26,7 +26,7 @@ model Product {
   media             String[]
   price_u_buy_with  Float
   price_u_sell_with Float
-  quantity          Int      @default(1)
+  inventory          Int      @default(1)
   continue_selling  Boolean  @default(false)
   category          String[]
 }
