@@ -23,3 +23,9 @@ export const productSchema = z.object({
     .nullable()
     .default(null),
 });
+
+export const extendedProductSchema = productSchema.extend({
+  images: z
+    .array(z.object({ id: z.string(), name: z.string(), url: z.string() }))
+    .nullable(),
+});

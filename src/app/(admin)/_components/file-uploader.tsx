@@ -31,6 +31,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import { cn, formatBytes } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/Icons";
 
 // FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
 
@@ -274,7 +275,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                 size="icon"
                 className="h-7 w-7"
               >
-                <CropIcon className="h-4 w-4 text-white" aria-hidden="true" />
+                <Icons.left className="h-4 w-4 text-white" aria-hidden="true" />
                 <span className="sr-only">Crop image</span>
               </Button>
             </DialogTrigger>
@@ -345,7 +346,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
             setFiles(files.filter((_, j) => j !== i));
           }}
         >
-          <Cross2Icon className="h-4 w-4 text-white" aria-hidden="true" />
+          <Icons.user className="h-4 w-4 text-white" aria-hidden="true" />
           <span className="sr-only">Remove file</span>
         </Button>
       </div>
