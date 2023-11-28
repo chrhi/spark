@@ -33,6 +33,7 @@
     "react-textarea-autosize": "^8.5.3",
     "recharts": "^2.10.1",
     "sonner": "^1.2.3",
+    "swiper": "^11.0.5",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.0.3",
