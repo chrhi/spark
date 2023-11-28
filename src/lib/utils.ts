@@ -39,3 +39,5 @@ export function isArrayOfFile(files: unknown): files is File[] {
   if (!isArray) return false;
   return files.every((file) => file instanceof File);
 }
+
+var number: number = 9;
