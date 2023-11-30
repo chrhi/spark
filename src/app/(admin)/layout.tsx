@@ -2,6 +2,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Header from "./_components/Header";
 import { Sidebar } from "./_components/sidebar";
 import { playlists } from "./_data/playlist";
+import { Toaster } from "sonner";
 
 export default function AdminLayout({
   children,
@@ -20,6 +21,7 @@ export default function AdminLayout({
         <main className="w-[calc(100%-200px)] ml-[200px] bg-gray-50 ">
           {children}
         </main>
+        <Toaster />
       </div>
     </>
   );
