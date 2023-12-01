@@ -20,13 +20,13 @@ model Product {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  title             String?
-  description       Json?
-  status            STATUS   @default(UNACTIVE)
-  media             String[]
-  price_u_buy_with  Float
-  price_u_sell_with Float
-  inventory          Int      @default(1)
-  continue_selling  Boolean  @default(false)
-  category          String[]
+  name       String
+  description String?
+  status      STATUS  @default(ACTIVE)
+  images      Json?
+  price       String
+
+  inventory Int @default(1)
+
+  category String[]
 }

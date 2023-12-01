@@ -3,14 +3,7 @@
 import type { FC } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -30,7 +23,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  UncontrolledFormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -42,14 +34,14 @@ import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
 import { toast } from "sonner";
 import { catchError, isArrayOfFile } from "@/lib/utils";
-import { addProductAction } from "@/app/(admin)/_actions/product";
+
 import { Icons } from "../Icons";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 type Inputs = z.infer<typeof productSchema>;
 
 const { useUploadThing } = generateReactHelpers<OurFileRouter>();
-
-interface AddProductFormAbdullahProps {}
 
 const AddProductForm: FC = ({}) => {
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
@@ -65,14 +57,14 @@ const AddProductForm: FC = ({}) => {
       description: "",
       price: "",
       inventory: NaN,
-      category: ["skateboards"],
+      category: ["whates"],
 
       images: [],
     },
   });
 
-  function onSubmit(data: Inputs) {
-    startTransition(async () => {
+  const { mutate, error, mutateAsync } = useMutation({
+    mutationFn: async (data: Inputs) => {
       try {
         if (isArrayOfFile(data.images)) {
           toast.promise(
@@ -83,15 +75,17 @@ const AddProductForm: FC = ({}) => {
                   name: image.key.split("_")[1] ?? image.key,
                   url: image.url,
                 }));
+                console.log(formattedImages);
                 return formattedImages ?? null;
               })
-              .then((images) => {
-                return addProductAction({
+              .then(async (images) => {
+                await axios.post("/api/admin/products/add", {
                   ...data,
 
                   images,
                 });
               }),
+
             {
               loading: "Uploading images...",
               success: "Product added successfully.",
@@ -99,7 +93,7 @@ const AddProductForm: FC = ({}) => {
             }
           );
         } else {
-          await addProductAction({
+          await axios.post("/api/admin/products/add", {
             ...data,
 
             images: null,
@@ -108,12 +102,20 @@ const AddProductForm: FC = ({}) => {
           toast.success("Product added successfully.");
         }
 
-        form.reset();
-        setFiles(null);
+        // form.reset();
+        // setFiles(null);
       } catch (err) {
         catchError(err);
       }
-    });
+    },
+  });
+
+  async function onSubmit(data: Inputs) {
+    console.log("this is the data");
+    console.log(data);
+    await mutateAsync(data);
+
+    // here redirect the user to the products page
   }
 
   return (

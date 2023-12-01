@@ -1,27 +1,18 @@
 import { FC } from "react";
 import { DataTable } from "../_components/table/data-table";
-import {
-  Product,
-  productsColumns,
-} from "../_components/table/products-columns";
+import { productsColumns } from "../_components/table/products-columns";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { db } from "@/lib/db";
+import { Product } from "@prisma/client";
 
 interface pageAbdullahProps {}
 
 async function getData(): Promise<Product[]> {
+  const products = await db.product.findMany();
+
   // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      units: 100,
-      price: 900,
-      image: "",
-      status: "active",
-      title: "something not cheap",
-    },
-    // ...
-  ];
+  return products;
 }
 
 const page: FC = async ({}) => {

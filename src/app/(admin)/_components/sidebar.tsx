@@ -6,11 +6,9 @@ import { Playlist, playlists } from "../_data/playlist";
 import { Icons } from "@/components/Icons";
 import { useRouter, usePathname } from "next/navigation";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: Playlist[];
-}
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function Sidebar({ className, playlists }: SidebarProps) {
+export function Sidebar({ className }: SidebarProps) {
   const router = useRouter();
 
   const path = usePathname();
@@ -63,12 +61,12 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               Products
             </Button>
             <Button
-              onClick={() => router.push("/banner")}
+              onClick={() => router.push("/editor")}
               variant={path === "/banner" ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Banner className="w-4 h-4 mr-2 " />
-              Banner
+              Editor
             </Button>
             <Button
               onClick={() => router.push("/analitycs")}

@@ -9,6 +9,8 @@ import {
   BookHeart,
   LineChart,
   MoveLeft,
+  Layout,
+  Palette,
 } from "lucide-react";
 
 export const Icons = {
@@ -39,4 +41,6 @@ export const Icons = {
   Banner: BookHeart,
   Analytics: LineChart,
   left: MoveLeft,
+  layout: Layout,
+  color: Palette,
 };
