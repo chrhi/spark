@@ -75,7 +75,6 @@ const AddProductForm: FC = ({}) => {
                   name: image.key.split("_")[1] ?? image.key,
                   url: image.url,
                 }));
-                console.log(formattedImages);
                 return formattedImages ?? null;
               })
               .then(async (images) => {
@@ -264,6 +263,19 @@ const AddProductForm: FC = ({}) => {
                         )}
                       />
                     </>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="w-full my-4 ">
+              <CardContent>
+                <div className="grid w-full items-center gap-4">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="framework">Search engine listing</Label>
+                    <Label>
+                      Add a title and description to see how this product might
+                      appear in a search engine listing
+                    </Label>
                   </div>
                 </div>
               </CardContent>
