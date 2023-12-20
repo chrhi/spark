@@ -1,26 +1,23 @@
+import { Button } from "@/components/ui/button";
+import { ReactNode } from "react";
+
 interface Props {
   title: string;
+  href: string;
+  children: ReactNode;
 }
 
-export default function ProductsLine({ title }: Props) {
+export default function ProductsLine({ title, href, children }: Props) {
   return (
-    <div className="bg-white mx-auto w-full my-4">
-      <div className="w-ful max-w-7xl mx-auto h-fit grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+    <div className="bg-white mx-auto w-full flex flex-col h-fit gap-y-8 my-8">
+      <div className="w-full h-[50px] px-2 flex items-center justify-between">
+        <h2 className="text-4xl font-bold text-start ">{title}</h2>
+
+        <Button variant="link">view more products</Button>
+      </div>
+      <div className="w-full px-2  mx-auto h-fit grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-8 ">
+        {children}
       </div>
     </div>
-  );
-}
-
-function Product() {
-  return (
-    <div className="md:w-[200px] md:h-[200px] w-[170px] h-[170px] lg:w-[290px] lg:h-[290px] bg-black "></div>
   );
 }
