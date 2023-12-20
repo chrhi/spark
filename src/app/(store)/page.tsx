@@ -1,6 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Banner from "./_components/Banner";
 import ProductsLine from "./_components/products-line";
+import ProductListing from "./_components/ProductListing";
 
 export default function Home() {
   return (
@@ -16,7 +17,19 @@ export default function Home() {
             people&apos;s lives in small but mighty ways.
           </p>
         </div>
-        <ProductsLine title="Best salles" />
+        {/* <ProductsLine title="Best salles" /> */}
+        <ProductListing
+          index={9}
+          product={{
+            category: "rolex",
+            description:
+              "this is hight quality watch you need to have in your packet",
+            images: ["/rolex.webp"],
+            name: "rolex detona",
+            price: 90000,
+            id: "uiiiii",
+          }}
+        />
       </MaxWidthWrapper>
     </>
   );

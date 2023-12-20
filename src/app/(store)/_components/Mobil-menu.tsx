@@ -15,7 +15,7 @@ const MobilMenu: FC = ({}) => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu />
+        <Menu className="md:hidden" />
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

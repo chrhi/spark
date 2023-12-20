@@ -4,7 +4,7 @@ interface TopLineAbdullahProps {}
 
 const TopLine: FC = ({}) => {
   return (
-    <div className="w-full bg-black h-[36px] flex items-center justify-center">
+    <div className="w-full bg-violet-950 h-[36px] flex items-center justify-center">
       <p className="text-white text-sm ">
         Free shipping available on all orders!
       </p>
