@@ -16,6 +16,11 @@ enum STATUS {
   UNACTIVE
 }
 
+model ProductType {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+}
+
 model Product {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())

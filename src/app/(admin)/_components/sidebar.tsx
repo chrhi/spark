@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Playlist, playlists } from "../_data/playlist";
 import { Icons } from "@/components/Icons";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -18,7 +17,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Work
+            Travail
           </h2>
           <div className="space-y-1">
             <Button
@@ -27,54 +26,70 @@ export function Sidebar({ className }: SidebarProps) {
               className="w-full justify-start"
             >
               <Icons.Home className="w-4 h-4 mr-2 " />
-              Home
+              Aperçu
             </Button>
             <Button
-              onClick={() => router.push("/orders")}
-              variant={path === "/orders" ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/orders")}
+              variant={path.includes("/orders") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Order className="w-4 h-4 mr-2 " />
-              Orders
+              Commandes
             </Button>
             <Button
-              onClick={() => router.push("/customers")}
-              variant={path === "/customers" ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/customers")}
+              variant={path.includes("/customers") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Customers className="w-4 h-4 mr-2 " />
-              Customers
+              Clients
             </Button>
           </div>
         </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Your Store
+            Votre magasin{" "}
           </h2>
           <div className="space-y-1">
             <Button
-              onClick={() => router.push("/products")}
-              variant={path === "/products" ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/products")}
+              variant={path.includes("/products") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Prodcuts className="w-4 h-4 mr-2 " />
-              Products
+              Produits
             </Button>
             <Button
-              onClick={() => router.push("/editor")}
-              variant={path === "/banner" ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/analitycs")}
+              variant={path.includes("/analitycs") ? "secondary" : "ghost"}
+              className="w-full justify-start"
+            >
+              <Icons.collection className="w-4 h-4 mr-2 " />
+              Collections
+            </Button>
+            <Button
+              onClick={() => router.push("/admin/editor")}
+              variant={path.includes("/banner") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Banner className="w-4 h-4 mr-2 " />
-              Editor
+              Éditeur
             </Button>
             <Button
-              onClick={() => router.push("/analitycs")}
-              variant={path === "/analitycs" ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/analitycs")}
+              variant={path.includes("analitycs") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Analytics className="w-4 h-4 mr-2 " />
-              Analitycs
+              Analytique
+            </Button>
+            <Button
+              onClick={() => router.push("/admin/settings")}
+              variant={path === "/analitycs" ? "secondary" : "ghost"}
+              className="w-full justify-start"
+            >
+              <Icons.settings className="w-4 h-4 mr-2 " />
+              Paramètres
             </Button>
           </div>
         </div>

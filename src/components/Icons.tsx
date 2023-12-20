@@ -11,6 +11,8 @@ import {
   MoveLeft,
   Layout,
   Palette,
+  Package,
+  Settings,
 } from "lucide-react";
 
 export const Icons = {
@@ -43,4 +45,6 @@ export const Icons = {
   left: MoveLeft,
   layout: Layout,
   color: Palette,
+  collection: Package,
+  settings: Settings,
 };

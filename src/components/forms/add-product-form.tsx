@@ -34,7 +34,7 @@ import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
 import { toast } from "sonner";
 import { catchError, isArrayOfFile } from "@/lib/utils";
-
+import { useRouter } from "next/navigation";
 import { Icons } from "../Icons";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
@@ -45,7 +45,7 @@ const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 const AddProductForm: FC = ({}) => {
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
-
+  const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
@@ -83,6 +83,10 @@ const AddProductForm: FC = ({}) => {
 
                   images,
                 });
+                router.push("/admin/products");
+                console.log("this is the images we have in here");
+                console.log(data);
+                console.log(images);
               }),
 
             {

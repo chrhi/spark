@@ -13,13 +13,13 @@ const page: FC = ({}) => {
         <div className="flex items-center justify-between space-y-2">
           <div className="flex items-center space-x-2">
             <Link
-              href={"/products"}
+              href={"/admin/products"}
               className={buttonVariants({ variant: "ghost", size: "icon" })}
             >
               <Icons.left className="w-4 h-4" />
             </Link>
             <h2 className="text-2xl font-semibold  tracking-tight">
-              Add New Product
+              Ajouter un nouveau produit
             </h2>
           </div>
         </div>
