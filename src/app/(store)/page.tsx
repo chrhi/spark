@@ -2,6 +2,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Banner from "./_components/Banner";
 import ProductsLine from "./_components/products-line";
 import ProductListing from "./_components/ProductListing";
+import ImageSlider from "./_components/ImageSlider";
 
 export default function Home() {
   return (
@@ -18,13 +19,23 @@ export default function Home() {
           </p>
         </div>
         {/* <ProductsLine title="Best salles" /> */}
+        <div className="w-full h-[200px] flex border my-8 items-center justify-center">
+          <ImageSlider
+            urls={[
+              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
+            ]}
+          />
+        </div>
+
         <ProductListing
           index={9}
           product={{
             category: "rolex",
             description:
               "this is hight quality watch you need to have in your packet",
-            images: ["/rolex.webp"],
+            images: [
+              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
+            ],
             name: "rolex detona",
             price: 90000,
             id: "uiiiii",

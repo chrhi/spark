@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../globals.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import TopLine from "./_components/top-line";
 import NavBar from "./_components/nav-bar";
 import Footer from "./_components/footer";

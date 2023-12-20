@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+
 import type SwiperType from "swiper";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
@@ -38,7 +37,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
   const inactiveStyles = "hidden text-gray-400";
 
   return (
-    <div className="group relative bg-zinc-100 aspect-square overflow-hidden rounded-xl">
+    <div className="group relative bg-black aspect-square overflow-hidden rounded-xl">
       <div className="absolute z-10 inset-0 opacity-0 group-hover:opacity-100 transition">
         <button
           onClick={(e) => {
