@@ -22,7 +22,7 @@ export default function DashboardPage() {
     <div className="hidden max-w-[1200px] mx-auto flex-col md:flex">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Tableau de bord</h2>
         </div>
 
         <div className="space-y-4">
@@ -30,7 +30,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Total Revenue
+                  Revenu total
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,15 +47,12 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$45,231.89</div>
-                <p className="text-xs text-muted-foreground">
-                  +20.1% from last month
-                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Subscriptions
+                  commandes totales
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +71,11 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+2350</div>
-                <p className="text-xs text-muted-foreground">
-                  +180.1% from last month
-                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                <CardTitle className="text-sm font-medium">Ventes</CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -98,15 +92,12 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+12,234</div>
-                <p className="text-xs text-muted-foreground">
-                  +19% from last month
-                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Active Now
+                  retour perdu
                 </CardTitle>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,16 +114,13 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+573</div>
-                <p className="text-xs text-muted-foreground">
-                  +201 since last hour
-                </p>
               </CardContent>
             </Card>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
             <Card className="col-span-4">
               <CardHeader>
-                <CardTitle>Overview</CardTitle>
+                <CardTitle>Aperçu</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <Overview />
@@ -140,9 +128,9 @@ export default function DashboardPage() {
             </Card>
             <Card className="col-span-3">
               <CardHeader>
-                <CardTitle>Recent Sales</CardTitle>
+                <CardTitle>Ventes récentes</CardTitle>
                 <CardDescription>
-                  You made 265 sales this month.
+                  Vous avez réalisé 265 ventes ce mois-ci.
                 </CardDescription>
               </CardHeader>
               <CardContent>
