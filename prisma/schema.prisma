@@ -16,10 +16,7 @@ enum STATUS {
   UNACTIVE
 }
 
-model ProductType {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-}
+
 
 model Product {
   id        Int      @id @default(autoincrement())
@@ -33,8 +30,8 @@ model Product {
 
   inventory Int @default(1)
 
-  category String[]
-  subCategory String[]
+  category String
+  subCategory String
 }
 model Order {
   id        Int      @id @default(autoincrement())

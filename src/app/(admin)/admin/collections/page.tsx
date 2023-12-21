@@ -22,13 +22,13 @@ const page: FC = async ({}) => {
     <div className="hidden max-w-[1200px] mx-auto flex-col md:flex">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-3xl font-bold tracking-tight">Des produits</h2>
+          <h2 className="text-3xl font-bold tracking-tight">collections</h2>
           <div className="flex items-center space-x-2">
             <Link
               href={"/admin/products/add-product"}
               className={buttonVariants()}
             >
-              Ajouter un produit
+              créer une collection
             </Link>
           </div>
         </div>

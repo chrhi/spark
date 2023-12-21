@@ -20,6 +20,7 @@ export async function POST(request: Request) {
       category: payload?.category,
       images: JSON.stringify(payload?.images as string),
       inventory: payload?.inventory,
+      subCategory: payload?.subcategory,
     },
   });
 

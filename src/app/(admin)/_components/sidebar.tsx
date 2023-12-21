@@ -60,8 +60,10 @@ export function Sidebar({ className }: SidebarProps) {
               Produits
             </Button>
             <Button
-              onClick={() => router.push("/admin/analitycs")}
-              variant={path.includes("/analitycs") ? "secondary" : "ghost"}
+              onClick={() => router.push("/admin/collections")}
+              variant={
+                path.includes("/admin/collections") ? "secondary" : "ghost"
+              }
               className="w-full justify-start"
             >
               <Icons.collection className="w-4 h-4 mr-2 " />
@@ -69,7 +71,7 @@ export function Sidebar({ className }: SidebarProps) {
             </Button>
             <Button
               onClick={() => router.push("/admin/editor")}
-              variant={path.includes("/banner") ? "secondary" : "ghost"}
+              variant={path.includes("/admin/editor") ? "secondary" : "ghost"}
               className="w-full justify-start"
             >
               <Icons.Banner className="w-4 h-4 mr-2 " />
@@ -77,7 +79,9 @@ export function Sidebar({ className }: SidebarProps) {
             </Button>
             <Button
               onClick={() => router.push("/admin/analitycs")}
-              variant={path.includes("analitycs") ? "secondary" : "ghost"}
+              variant={
+                path.includes("/admin/analitycs") ? "secondary" : "ghost"
+              }
               className="w-full justify-start"
             >
               <Icons.Analytics className="w-4 h-4 mr-2 " />

@@ -300,7 +300,10 @@ const AddProductForm: FC = ({}) => {
                     <div className="grid w-full items-center gap-2">
                       <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="framework">Status</Label>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger defaultValue={"ACTIVE"} id="framework">
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -309,6 +312,7 @@ const AddProductForm: FC = ({}) => {
                             <SelectItem value="DRAFT">Draft</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </div>
                     </div>
                   </CardContent>
@@ -325,7 +329,10 @@ const AddProductForm: FC = ({}) => {
                     <div className="grid w-full items-center gap-2">
                       <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="framework">category</Label>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger id="framework">
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -342,6 +349,7 @@ const AddProductForm: FC = ({}) => {
                             })}
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </div>
                     </div>
                   </CardContent>
@@ -351,20 +359,21 @@ const AddProductForm: FC = ({}) => {
 
             <FormField
               control={form.control}
-              name="status"
+              name="subcategory"
               render={({ field }) => (
                 <Card className="w-full my-4 p-2">
                   <CardContent>
                     <div className="grid w-full items-center gap-2">
                       <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="framework">sub category</Label>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger id="framework">
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
                           <SelectContent position="popper">
-                            <SelectItem value="next">Active</SelectItem>
-                            <SelectItem value="sveltekit">Draft</SelectItem>
                             {categories
                               .filter(
                                 (item) =>
@@ -381,6 +390,7 @@ const AddProductForm: FC = ({}) => {
                               })}
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </div>
                     </div>
                   </CardContent>
