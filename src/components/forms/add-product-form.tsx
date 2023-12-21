@@ -60,8 +60,8 @@ const AddProductForm: FC = ({}) => {
       description: "",
       price: "",
       inventory: NaN,
-      category: ["whates"],
-
+      category: "",
+      subcategory: "",
       images: [],
     },
   });
@@ -291,68 +291,102 @@ const AddProductForm: FC = ({}) => {
           </div>
           {/* this is the second clomun */}
           <div className="w-full h-fit flex flex-col items-center">
-            <Card className="w-full p-2 ">
-              <CardContent>
-                <div className="grid w-full items-center gap-2">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="framework">Status</Label>
-                    <Select>
-                      <SelectTrigger defaultValue={"ACTIVE"} id="framework">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        <SelectItem value="ACTIVE">Active</SelectItem>
-                        <SelectItem value="DRAFT">Draft</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="w-full my-4 p-2">
-              <CardContent>
-                <div className="grid w-full items-center gap-2">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="framework">category</Label>
-                    <Select>
-                      <SelectTrigger id="framework">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        {categories.map((item) => {
-                          return (
-                            <SelectItem
-                              key={item.category}
-                              value={item.category}
-                            >
-                              {item.category}
-                            </SelectItem>
-                          );
-                        })}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="w-full my-4 p-2">
-              <CardContent>
-                <div className="grid w-full items-center gap-2">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="framework">sub category</Label>
-                    <Select>
-                      <SelectTrigger id="framework">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        <SelectItem value="next">Active</SelectItem>
-                        <SelectItem value="sveltekit">Draft</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <Card className="w-full p-2 ">
+                  <CardContent>
+                    <div className="grid w-full items-center gap-2">
+                      <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="framework">Status</Label>
+                        <Select>
+                          <SelectTrigger defaultValue={"ACTIVE"} id="framework">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            <SelectItem value="ACTIVE">Active</SelectItem>
+                            <SelectItem value="DRAFT">Draft</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <Card className="w-full my-4 p-2">
+                  <CardContent>
+                    <div className="grid w-full items-center gap-2">
+                      <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="framework">category</Label>
+                        <Select>
+                          <SelectTrigger id="framework">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            {categories.map((item) => {
+                              return (
+                                <SelectItem
+                                  key={item.category}
+                                  value={item.category}
+                                >
+                                  {item.category}
+                                </SelectItem>
+                              );
+                            })}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <Card className="w-full my-4 p-2">
+                  <CardContent>
+                    <div className="grid w-full items-center gap-2">
+                      <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="framework">sub category</Label>
+                        <Select>
+                          <SelectTrigger id="framework">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            <SelectItem value="next">Active</SelectItem>
+                            <SelectItem value="sveltekit">Draft</SelectItem>
+                            {categories
+                              .filter(
+                                (item) =>
+                                  item.category === form.getValues("category")
+                              )
+                              .map((item) => {
+                                return item.subCategory.map((item) => {
+                                  return (
+                                    <SelectItem key={item} value={item}>
+                                      {item}
+                                    </SelectItem>
+                                  );
+                                });
+                              })}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            />
           </div>
         </div>
         <div className="w-full h-[100px] bg-white rounded-lg shadow p-2 flex items-center justify-end">

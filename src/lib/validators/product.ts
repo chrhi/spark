@@ -7,7 +7,9 @@ export const productSchema = z.object({
     message: "Must be at least 1 character",
   }),
   description: z.string().optional(),
-  category: z.string().array(),
+  category: z.string(),
+  subcategory: z.string(),
+  status: z.string(),
   price: z.string().regex(/^\d+(\.\d{1,2})?$/, {
     message: "Must be a valid price",
   }),
