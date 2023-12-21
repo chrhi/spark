@@ -41,6 +41,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Zoom } from "../zoom-image";
 import Image from "next/image";
+import { categories } from "@/constants/CATEGORIES";
 
 type Inputs = z.infer<typeof productSchema>;
 
@@ -179,45 +180,49 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
-            <FormField
-              control={form.control}
-              name="images"
-              render={({ field }) => (
-                <FormItem className="flex w-full flex-col gap-1.5">
-                  <FormLabel>Images</FormLabel>
-                  {files?.length ? (
-                    <div className="flex items-center gap-2">
-                      {files.map((file, i) => (
-                        <Zoom key={i}>
-                          <Image
-                            src={file.preview}
-                            alt={file.name}
-                            className="h-20 w-20 shrink-0 rounded-md object-cover object-center"
-                            width={80}
-                            height={80}
-                          />
-                        </Zoom>
-                      ))}
-                    </div>
-                  ) : null}
-                  <FormControl>
-                    <FileDialog
-                      setValue={form.setValue}
-                      name="images"
-                      maxFiles={3}
-                      maxSize={1024 * 1024 * 4}
-                      files={files}
-                      setFiles={setFiles}
-                      isUploading={isUploading}
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <UncontrolledFormMessage
-                    message={form.formState.errors.images?.message}
-                  />
-                </FormItem>
-              )}
-            />
+            <Card className="w-full my-8 p-4">
+              <CardContent>
+                <FormField
+                  control={form.control}
+                  name="images"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col gap-1.5">
+                      <FormLabel>Images</FormLabel>
+                      {files?.length ? (
+                        <div className="flex items-center gap-2">
+                          {files.map((file, i) => (
+                            <Zoom key={i}>
+                              <Image
+                                src={file.preview}
+                                alt={file.name}
+                                className="h-20 w-20 shrink-0 rounded-md object-cover object-center"
+                                width={80}
+                                height={80}
+                              />
+                            </Zoom>
+                          ))}
+                        </div>
+                      ) : null}
+                      <FormControl>
+                        <FileDialog
+                          setValue={form.setValue}
+                          name="images"
+                          maxFiles={3}
+                          maxSize={1024 * 1024 * 4}
+                          files={files}
+                          setFiles={setFiles}
+                          isUploading={isUploading}
+                          disabled={isPending}
+                        />
+                      </FormControl>
+                      <UncontrolledFormMessage
+                        message={form.formState.errors.images?.message}
+                      />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
 
             <Card className="w-full">
               <CardContent>
@@ -284,19 +289,6 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-4 ">
-              <CardContent>
-                <div className="grid w-full items-center gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="framework">Search engine listing</Label>
-                    <Label>
-                      Add a title and description to see how this product might
-                      appear in a search engine listing
-                    </Label>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
           {/* this is the second clomun */}
           <div className="w-full h-fit flex flex-col items-center">
@@ -306,19 +298,19 @@ const AddProductForm: FC = ({}) => {
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="framework">Status</Label>
                     <Select>
-                      <SelectTrigger id="framework">
+                      <SelectTrigger defaultValue={"ACTIVE"} id="framework">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent position="popper">
-                        <SelectItem value="next">Active</SelectItem>
-                        <SelectItem value="sveltekit">Draft</SelectItem>
+                        <SelectItem value="ACTIVE">Active</SelectItem>
+                        <SelectItem value="DRAFT">Draft</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-4 ">
+            <Card className="w-full my-4 p-4">
               <CardContent>
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
@@ -328,15 +320,23 @@ const AddProductForm: FC = ({}) => {
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent position="popper">
-                        <SelectItem value="next">Active</SelectItem>
-                        <SelectItem value="sveltekit">Draft</SelectItem>
+                        {categories.map((item) => {
+                          return (
+                            <SelectItem
+                              key={item.category}
+                              value={item.category}
+                            >
+                              {item.category}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-4 ">
+            <Card className="w-full my-4 p-4">
               <CardContent>
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
