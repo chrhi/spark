@@ -391,6 +391,7 @@ const AddProductForm: FC = ({}) => {
         </div>
         <div className="w-full h-[100px] bg-white rounded-lg shadow p-2 flex items-center justify-end">
           <Button
+            type="submit"
             onClick={() =>
               void form.trigger(["name", "description", "price", "inventory"])
             }
