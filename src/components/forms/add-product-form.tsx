@@ -50,7 +50,6 @@ const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 const AddProductForm: FC = ({}) => {
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
   const router = useRouter();
-  const [isPending, startTransition] = React.useTransition();
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
 
@@ -67,7 +66,7 @@ const AddProductForm: FC = ({}) => {
     },
   });
 
-  const { mutate, error, mutateAsync } = useMutation({
+  const { mutate, error, mutateAsync, isPending } = useMutation({
     mutationFn: async (data: Inputs) => {
       try {
         if (isArrayOfFile(data.images)) {
@@ -133,7 +132,7 @@ const AddProductForm: FC = ({}) => {
           <div className="w-full col-span-2 h-fit flex flex-col items-center">
             <Card className="w-full">
               <CardContent>
-                <div className="grid w-full items-center gap-4 p-4">
+                <div className="grid w-full items-center gap-2 p-2">
                   <div className="flex flex-col space-y-1.5">
                     <>
                       <FormField
@@ -180,7 +179,7 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-8 p-4">
+            <Card className="w-full my-8 p-2">
               <CardContent>
                 <FormField
                   control={form.control}
@@ -226,7 +225,7 @@ const AddProductForm: FC = ({}) => {
 
             <Card className="w-full">
               <CardContent>
-                <div className="grid w-full items-center gap-4 p-4">
+                <div className="grid w-full items-center gap-2 p-2">
                   <div className="flex flex-col space-y-1.5">
                     <>
                       <FormField
@@ -256,7 +255,7 @@ const AddProductForm: FC = ({}) => {
 
             <Card className="w-full my-4 ">
               <CardContent>
-                <div className="grid w-full items-center gap-4 p-4">
+                <div className="grid w-full items-center gap-2 p-2">
                   <div className="flex flex-col space-y-1.5">
                     <>
                       <FormField
@@ -292,9 +291,9 @@ const AddProductForm: FC = ({}) => {
           </div>
           {/* this is the second clomun */}
           <div className="w-full h-fit flex flex-col items-center">
-            <Card className="w-full ">
+            <Card className="w-full p-2 ">
               <CardContent>
-                <div className="grid w-full items-center gap-4">
+                <div className="grid w-full items-center gap-2">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="framework">Status</Label>
                     <Select>
@@ -310,9 +309,9 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-4 p-4">
+            <Card className="w-full my-4 p-2">
               <CardContent>
-                <div className="grid w-full items-center gap-4">
+                <div className="grid w-full items-center gap-2">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="framework">category</Label>
                     <Select>
@@ -336,9 +335,9 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="w-full my-4 p-4">
+            <Card className="w-full my-4 p-2">
               <CardContent>
-                <div className="grid w-full items-center gap-4">
+                <div className="grid w-full items-center gap-2">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="framework">sub category</Label>
                     <Select>
@@ -356,7 +355,7 @@ const AddProductForm: FC = ({}) => {
             </Card>
           </div>
         </div>
-        <div className="w-full h-[100px] bg-white rounded-lg shadow p-4 flex items-center justify-end">
+        <div className="w-full h-[100px] bg-white rounded-lg shadow p-2 flex items-center justify-end">
           <Button
             onClick={() =>
               void form.trigger(["name", "description", "price", "inventory"])
