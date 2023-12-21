@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@loglib/tracker": "^0.8.0",
     "@prisma/client": "5.6.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -41,6 +42,7 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.48.2",
+    "react-medium-image-zoom": "^5.1.9",
     "react-textarea-autosize": "^8.5.3",
     "recharts": "^2.10.1",
     "sonner": "^1.2.3",

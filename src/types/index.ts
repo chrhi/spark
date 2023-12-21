@@ -12,3 +12,9 @@ export type Product = {
   images: string[];
   category: string;
 };
+
+export interface Option {
+  label: string;
+  value: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
