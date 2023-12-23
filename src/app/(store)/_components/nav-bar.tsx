@@ -6,6 +6,8 @@ import SearchInput from "./search";
 import { ShoppingBag } from "lucide-react";
 import { MobileBag } from "./mobil-bag/bag";
 import { Button } from "@/components/ui/button";
+import Bag from "./bag";
+import Link from "next/link";
 
 interface NavBarAbdullahProps {}
 
@@ -16,15 +18,18 @@ const NavBar: FC = ({}) => {
         <div className="w-full h-full flex items-center justify-between border-b">
           <MobilMenu />
           <div className="w-[100px] md:w-[70%] md:mr-auto flex items-center justify-start gap-x-2">
-            <p className="text-2xl font-bold text-blue-950"> Dawn</p>
+            <Link href={"/"}>
+              <p className="text-2xl font-bold text-black"> Dawn</p>
+            </Link>
             <Button variant="ghost">Man</Button>
             <Button variant="ghost">Woman</Button>
             <Button variant="ghost">Kids</Button>
           </div>
           <div className="w-[70px] h-full flex items-center gap-x-4 justify-end px-2">
             <SearchInput />
-            <ShoppingBag className="w-5 h-5 hidden md:block " />
+            {/* <ShoppingBag className="w-5 h-5 hidden md:block " /> */}
             <MobileBag />
+            <Bag />
           </div>
         </div>
       </MaxWidthWrapper>

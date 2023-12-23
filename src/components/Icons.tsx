@@ -13,6 +13,10 @@ import {
   Palette,
   Package,
   Settings,
+  ImageIcon,
+  ShoppingBag,
+  Ghost,
+  ShoppingCart,
 } from "lucide-react";
 
 export const Icons = {
@@ -127,4 +131,8 @@ export const Icons = {
   color: Palette,
   collection: Package,
   settings: Settings,
+  placeholder: ImageIcon,
+  bag: ShoppingBag,
+  ghost: Ghost,
+  basket: ShoppingCart,
 };

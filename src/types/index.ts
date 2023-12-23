@@ -17,3 +17,9 @@ export interface Option {
   label: string;
   value: string;
 }
+
+export interface StoredFile {
+  id: string;
+  name: string;
+  url: string;
+}
