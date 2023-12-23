@@ -5,6 +5,16 @@ import ProductListing from "./_components/ProductListing";
 import ImageSlider from "./_components/ImageSlider";
 
 export default function Home() {
+  console.log("mahdi" + "chehri");
+
+  for (let i = 0; i < 10; i++) {
+    var m = 7 * i;
+    console.log("the value of the multiplications is " + m);
+    // console.log("7 x " + i + "=" + m);
+  }
+
+  //mahdichehri
+
   return (
     <>
       <Banner />

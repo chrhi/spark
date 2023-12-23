@@ -16,13 +16,19 @@ enum STATUS {
   UNACTIVE
 }
 
-
+model Collection {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  title       String
+  description String
+  products    String[]
+}
 
 model Product {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  name       String
+  name        String
   description String?
   status      STATUS  @default(ACTIVE)
   images      Json?
@@ -30,25 +36,27 @@ model Product {
 
   inventory Int @default(1)
 
-  category String
+  category    String
   subCategory String
 }
+
 model Order {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  name       String
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  name        String
   description String?
-  status      STATUS  @default(ACTIVE)
+  status      STATUS   @default(ACTIVE)
   images      Json?
   price       String
-  inventory Int @default(1)
-  category String[]
+  inventory   Int      @default(1)
+  category    String[]
 }
+
 model Customer {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
 
-  name       String
+  name        String
   description String?
   status      STATUS  @default(ACTIVE)
   images      Json?
