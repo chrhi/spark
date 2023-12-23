@@ -17,7 +17,7 @@ enum STATUS {
 }
 
 model Collection {
-  id          Int      @id @default(autoincrement())
+  id          String      @id @default(uuid())
   createdAt   DateTime @default(now())
   title       String
   description String
@@ -25,7 +25,7 @@ model Collection {
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
+  id          String      @id @default(uuid())
   createdAt DateTime @default(now())
 
   name        String
@@ -41,7 +41,7 @@ model Product {
 }
 
 model Order {
-  id          Int      @id @default(autoincrement())
+ id          String      @id @default(uuid())
   createdAt   DateTime @default(now())
   name        String
   description String?
@@ -53,7 +53,7 @@ model Order {
 }
 
 model Customer {
-  id        Int      @id @default(autoincrement())
+ id          String      @id @default(uuid())
   createdAt DateTime @default(now())
 
   name        String
@@ -65,4 +65,13 @@ model Customer {
   inventory Int @default(1)
 
   category String[]
+}
+
+
+model sale {
+  id          String      @id @default(uuid()) 
+  createdAt DateTime @default(now())
+  productsId String[]
+  
+
 }

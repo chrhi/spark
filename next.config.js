@@ -5,6 +5,7 @@ const nextConfig = {
       "uploadthing.com",
       "lh3.googleusercontent.com",
       "watchrapport.com",
+      "utfs.io",
     ],
   },
 };

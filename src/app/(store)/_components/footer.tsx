@@ -1,11 +1,13 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { Button } from "@/components/ui/button";
 import { type FC } from "react";
+import Secret from "./secret";
 
 interface FooterAbdullahProps {}
 
 const Footer: FC = ({}) => {
   return (
-    <div className="w-full h-fit lg:h-[400px] bg-black ">
+    <div className="w-full h-fit  overflow-hidden bg-black ">
       <MaxWidthWrapper className="flex flex-col">
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-3 p-8 ">
           <div className="w-full h-[150px] flex gap-y-4  flex-col justify-start items-start">
@@ -26,6 +28,10 @@ const Footer: FC = ({}) => {
               Quality materials, good designs, craftsmanship and sustainability.
             </p>
           </div>
+        </div>
+        <div className="w-full  h-[100px] flex justify-between items-end p-6 ">
+          <p className="text-white text-start">© 2023, All Rights resolved</p>{" "}
+          <Secret />
         </div>
       </MaxWidthWrapper>
     </div>

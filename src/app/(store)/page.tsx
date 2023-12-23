@@ -3,15 +3,21 @@ import Banner from "./_components/Banner";
 import ProductsLine from "./_components/products-line";
 import ProductListing from "./_components/ProductListing";
 import ImageSlider from "./_components/ImageSlider";
+import { Product } from "@prisma/client";
+import { db } from "@/lib/db";
+import { StoredFile } from "@/types";
 
-export default function Home() {
-  console.log("mahdi" + "chehri");
+async function getData(): Promise<Product[]> {
+  const products = await db.product.findMany();
 
-  for (let i = 0; i < 10; i++) {
-    var m = 7 * i;
-    console.log("the value of the multiplications is " + m);
-    // console.log("7 x " + i + "=" + m);
-  }
+  // Fetch data from your API here.
+  return products;
+}
+
+export default async function Home() {
+  const products = await getData();
+
+  console.log(products);
 
   //mahdichehri
 
@@ -31,150 +37,22 @@ export default function Home() {
         {/* <ProductsLine title="Best salles" /> */}
 
         <ProductsLine title="Best sells" href="/">
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-        </ProductsLine>
-
-        {/* this is the new items */}
-        <ProductsLine title="Recently added to store" href="/">
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
-          <ProductListing
-            index={9}
-            product={{
-              category: "rolex",
-              description:
-                "this is hight quality watch you need to have in your packet",
-              images: [
-                "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              ],
-              name: "rolex detona",
-              price: 90000,
-              id: "uiiiii",
-            }}
-          />
+          {products.map((item, index) => {
+            return (
+              <ProductListing
+                key={item.id + "best sells"}
+                index={index}
+                product={{
+                  category: item.category,
+                  description: item.description ? item.description : "",
+                  images: JSON.parse(item.images as string) as StoredFile[],
+                  name: item.name,
+                  price: item.price,
+                  id: item.id.toString(),
+                }}
+              />
+            );
+          })}
         </ProductsLine>
       </MaxWidthWrapper>
     </>

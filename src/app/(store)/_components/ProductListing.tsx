@@ -15,6 +15,8 @@ interface ProductListingProps {
 }
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
+  console.log(product?.images[0].url);
+
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -41,17 +43,19 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         className={cn("invisible h-full w-full cursor-pointer group/main", {
           "visible animate-in fade-in-5": isVisible,
         })}
-        href={`/product/jeujnehedgs`}
+        href={`/product/${product.id}`}
       >
         <div className="flex flex-col w-full ">
-          <Image
-            key={""}
-            width={200}
-            height={200}
-            className=" object-cover"
-            alt={product.name + "image"}
-            src={product.images[0]}
-          />
+          <div className="w-[200px] overflow-hidden h-[200px]">
+            <Image
+              key={""}
+              width={200}
+              height={200}
+              className=" object-cover"
+              alt={product.name + "image"}
+              src={product.images[0]?.url}
+            />
+          </div>
 
           <h3 className="mt-4 font-medium text-lg text-gray-700">
             {product.name}
