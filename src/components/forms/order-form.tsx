@@ -56,7 +56,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +69,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,7 +82,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,14 +95,14 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="w-full h-[200px] grid grid-cols-3 gap-2">
+        <div className="w-full h-fit grid grid-cols-2 gap-2">
           <FormField
             control={form.control}
             name="willaya"
@@ -114,7 +114,7 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full h-12">
                       <SelectValue placeholder="Alger" />
                     </SelectTrigger>
                     <SelectContent>
@@ -144,7 +144,7 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full h-12">
                       <SelectValue placeholder="Theme" />
                     </SelectTrigger>
                     <SelectContent>
@@ -164,22 +164,28 @@ export function OrderForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="street"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Street</FormLabel>
-                <FormControl>
-                  <Input placeholder="your address" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
         </div>
 
-        <Button type="submit">Confirme Order</Button>
+        <FormField
+          control={form.control}
+          name="street"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Street</FormLabel>
+              <FormControl>
+                <Input className="h-12" placeholder="your address" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button
+          className="w-full h-12 bg-black font-bold text-xl"
+          type="submit"
+        >
+          Confirme Order
+        </Button>
       </form>
     </Form>
   );
