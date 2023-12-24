@@ -6,10 +6,38 @@ import ProductsLine from "../../_components/products-line";
 import Breadcrumbs from "../../_components/bread-crumbs";
 import { ProductImageCarousel } from "../../_components/product-image-carousel";
 import { Separator } from "@/components/ui/separator";
+import { db } from "@/lib/db";
+import { Product } from "@prisma/client";
+import { notFound } from "next/navigation";
+import { StoredFile } from "@/types";
+import AddProductToCard from "../../_components/AddProductToCard";
 
-interface PageAbdullahProps {}
+interface PageProps {
+  params: {
+    product_id: string;
+  };
+}
 
-const page: FC = ({}) => {
+async function getData(id: string): Promise<Product | null> {
+  const product = await db.product.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  // Fetch data from your API here.
+  return product;
+}
+
+const page: FC<PageProps> = async ({ params }) => {
+  const { product_id } = params;
+
+  const product = await getData(product_id);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
     <MaxWidthWrapper>
       <div className="w-full min-h-[500px] h-fit grid grid-cols-3 py-8 ">
@@ -18,18 +46,7 @@ const page: FC = ({}) => {
 
           <ProductImageCarousel
             className="w-full md:w-full"
-            images={[
-              {
-                id: "hhgheyr",
-                name: "rolex detona",
-                url: "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              },
-              {
-                id: "hhhhhhgheyr",
-                name: "rolex detona 2",
-                url: "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-              },
-            ]}
+            images={JSON.parse(product.images as string) as StoredFile[]}
             options={{
               loop: true,
             }}
@@ -38,14 +55,14 @@ const page: FC = ({}) => {
         </div>
         <div className="flex flex-col gap-y-4 col-span-1 items-start p-4 w-full h-full">
           <h1 className="text-gray-950 text-5xl font-bold text-start">
-            T shirt detona something
+            {product.name}
           </h1>
           <p className="text-gray-700 text-xl">
             {" "}
             <span className="text-red-500  text-xl line-through">
-              450 dz
+              {product.price} dz
             </span>{" "}
-            300 dz
+            {product.price} dz
           </p>
           <div className="w-full  h-fit flex flex-col ">
             <p>Color</p>
@@ -90,21 +107,21 @@ const page: FC = ({}) => {
             >
               Order now
             </Button>
-            <Button
-              className="w-full bg-gray-100 rounded-full h-[50px]"
-              variant="secondary"
-              size="lg"
-            >
-              Add to card
-            </Button>
+            <AddProductToCard
+              product={{
+                category: product.category,
+                description: product.description ? product.description : "",
+                id: product.id,
+                images: JSON.parse(product.images as string) as StoredFile[],
+                name: product.name,
+                price: product.price,
+              }}
+            />
           </div>
           <div className="w-full h-fit ">
             <h3 className="text-xl text-start font-semibold">Description</h3>
             <p className="text-lg text-gray-700 text-start my-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-              corrupti corporis quasi sequi cumque earum inventore voluptas non
-              aperiam libero, nostrum quo exercitationem eos tenetur, veritatis
-              numquam id. Excepturi, suscipit?
+              {product.description}
             </p>
           </div>
         </div>

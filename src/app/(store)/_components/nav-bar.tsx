@@ -19,7 +19,7 @@ const NavBar: FC = ({}) => {
           <MobilMenu />
           <div className="w-[100px] md:w-[70%] md:mr-auto flex items-center justify-start gap-x-2">
             <Link href={"/"}>
-              <p className="text-2xl font-bold text-black"> Dawn</p>
+              <p className="text-2xl font-bold text-black"> Spark</p>
             </Link>
             <Button variant="ghost">Man</Button>
             <Button variant="ghost">Woman</Button>

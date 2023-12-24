@@ -1,4 +1,4 @@
-const algeriaStates = [
+export const ALGERIASTATES = [
   {
     name: "Adrar",
     baladia: ["Adrar", "Charouine", "Reggane", "Timimoun"],

@@ -41,15 +41,20 @@ model Product {
 }
 
 model Order {
- id          String      @id @default(uuid())
-  createdAt   DateTime @default(now())
-  name        String
-  description String?
-  status      STATUS   @default(ACTIVE)
-  images      Json?
-  price       String
-  inventory   Int      @default(1)
-  category    String[]
+  id            String      @id @default(uuid())
+  createdAt     DateTime    @default(now())
+  firstName     String 
+  lastName      String
+  phone_number  Int
+  email         String
+  willaya       String
+  baladia       String
+  street        String
+  products      String
+  total         Float
+  shipping      Float
+  confirmed     Boolean
+  retured       Boolean
 }
 
 model Customer {

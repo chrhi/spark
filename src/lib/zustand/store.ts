@@ -1,7 +1,14 @@
 import { create } from "zustand";
+import type { Product } from "@/types";
 
-const useStore = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
+interface BearState {
+  card: Product[];
+  addProductToCard: (product: Product) => void;
+  RemoveProductToCard: (by: number) => void;
+}
+
+export const useStore = create<BearState>((set, get) => ({
+  card: [],
+  addProductToCard: (product) => set({ card: [...get().card, product] }),
+  RemoveProductToCard: () => set({}),
 }));

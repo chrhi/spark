@@ -1,9 +1,20 @@
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { OrderForm } from "@/components/forms/order-form";
 import type { FC } from "react";
 
 interface pageAbdullahProps {}
 
 const page: FC = ({}) => {
-  return <div>page</div>;
+  return (
+    <MaxWidthWrapper>
+      <div className="w-full min-h-screen h-fit grid grid-cols-2 ">
+        <div className="w-full my-8 rounded-xl h-[80%]  bg-gray-50"></div>
+        <div className="w-full h-full  p-6">
+          <OrderForm />
+        </div>
+      </div>
+    </MaxWidthWrapper>
+  );
 };
 
 export default page;
