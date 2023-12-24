@@ -60,6 +60,27 @@ export function formatPrice(
   }).format(numericPrice);
 }
 
+export function toTitleCase(str: string) {
+  return str.replace(
+    /\w\S*/g,
+    (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+  );
+}
+
+export function toSentenceCase(str: string) {
+  return str
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase());
+}
+
+export function formatDate(date: Date | string | number) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
 export function constructMetadata({
   title = "DigitalHippo - the marketplace for digital assets",
   description = "DigitalHippo is an open-source marketplace for high-quality digital goods.",
