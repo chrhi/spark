@@ -1,12 +1,6 @@
 import { FC } from "react";
-import { DataTable } from "../../_components/table/data-table";
-import { productsColumns } from "../../_components/table/products-columns";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { Product } from "@prisma/client";
-import { DeleteProductDialog } from "../../_components/models/dete-product-model";
-import { DataTableLoading } from "../../_components/table/data-table-loading";
 import { ProductsTableShell } from "../../_components/shells/product-table-shell";
 import { Metadata } from "next";
 import { dashboardProductsSearchParamsSchema } from "@/lib/validators/params";
@@ -22,46 +16,43 @@ async function getData({
   end_date,
   page,
   per_page,
+  name,
 }: {
   start_date: Date | undefined;
   end_date: Date | undefined;
   page: number;
   per_page: number;
+  name: string;
 }): Promise<Product[]> {
   let products: Product[] = [];
-  if (start_date && end_date) {
-    products = await db.product.findMany({
-      skip: page,
-      where: {
-        createdAt: {
-          lte: start_date.toISOString(),
-          gte: end_date.toISOString(),
-        },
+
+  products = await db.product.findMany({
+    skip: page,
+    where: {
+      createdAt:
+        start_date && end_date
+          ? {
+              gte: start_date, // Start of date range
+              lte: end_date, // End of date range
+            }
+          : {},
+
+      name: name
+        ? {
+            startsWith: name,
+          }
+        : {},
+    },
+    take: per_page,
+    orderBy: [
+      {
+        createdAt: "asc",
       },
-      take: per_page,
-      orderBy: [
-        {
-          createdAt: "asc",
-        },
-        {
-          id: "asc",
-        },
-      ],
-    });
-  } else {
-    products = await db.product.findMany({
-      skip: page,
-      take: per_page,
-      orderBy: [
-        {
-          createdAt: "asc",
-        },
-        {
-          id: "asc",
-        },
-      ],
-    });
-  }
+      {
+        id: "asc",
+      },
+    ],
+  });
 
   // Fetch data from your API here.
   return products;
@@ -105,6 +96,7 @@ const page: FC<ProductsPageProps> = async ({ searchParams }) => {
     per_page: perPageAsNumber,
     start_date: fromDay,
     end_date: toDay,
+    name: name ? name : "",
   });
 
   const pageCount = Math.ceil(data.length / limit);
@@ -122,7 +114,6 @@ const page: FC<ProductsPageProps> = async ({ searchParams }) => {
           </div>
           <div>
             <ProductsTableShell pageCount={pageCount} data={data} />
-            {/* <DataTableLoading columnCount={5} /> */}
           </div>
         </div>
       </div>
