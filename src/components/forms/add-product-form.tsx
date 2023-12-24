@@ -19,6 +19,7 @@ import { FileDialog } from "@/components/file-dialog";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -42,6 +43,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Zoom } from "../zoom-image";
 import Image from "next/image";
 import { categories } from "@/constants/CATEGORIES";
+import { Switch } from "../ui/switch";
 
 type Inputs = z.infer<typeof productSchema>;
 
@@ -233,14 +235,59 @@ const AddProductForm: FC = ({}) => {
                         name="price"
                         render={({ field }) => (
                           <FormItem className="w-full ">
-                            <FormLabel>Price</FormLabel>
+                            <FormLabel>Pricing</FormLabel>
                             <FormControl className="w-full">
-                              <Input
-                                id="price"
-                                placeholder="Name of your project"
-                                value={field.value}
-                                onChange={field.onChange}
-                              />
+                              <>
+                                <div className="w-full h-[60px] grid grid-cols-2 gap-2">
+                                  <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                    <Label>Price</Label>
+                                    <Input
+                                      id="price"
+                                      placeholder="DZD 0.00"
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  </div>
+                                  <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                    <Label>Compare-at price</Label>
+                                    <Input
+                                      id="price"
+                                      placeholder="DZD 0.00"
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="w-full h-[60px] grid grid-cols-3 mt-4 gap-2">
+                                  <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                    <Label>Cost per item</Label>
+                                    <Input
+                                      id="price"
+                                      placeholder="DZD 0.00"
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  </div>
+                                  <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                    <Label>Profit</Label>
+                                    <Input
+                                      id="price"
+                                      placeholder="DZD 0.00"
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  </div>
+                                  <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                    <Label>Margin</Label>
+                                    <Input
+                                      id="price"
+                                      placeholder="DZD 0.00"
+                                      value={field.value}
+                                      onChange={field.onChange}
+                                    />
+                                  </div>
+                                </div>
+                              </>
                             </FormControl>
 
                             <FormMessage />
@@ -280,6 +327,29 @@ const AddProductForm: FC = ({}) => {
                             </FormControl>
 
                             <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="continue_selling_when_out_of_stock"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                            <div className="space-y-0.5">
+                              <FormLabel>
+                                Continue selling when out of stock
+                              </FormLabel>
+                              <FormDescription>
+                                Receive emails about new products, features, and
+                                more.
+                              </FormDescription>
+                            </div>
+                            <FormControl>
+                              <Switch
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
                           </FormItem>
                         )}
                       />

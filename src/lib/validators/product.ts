@@ -24,6 +24,7 @@ export const productSchema = z.object({
     .optional()
     .nullable()
     .default(null),
+  continue_selling_when_out_of_stock: z.boolean(),
 });
 
 export const extendedProductSchema = productSchema.extend({
