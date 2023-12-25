@@ -1,64 +1,90 @@
 "use client";
 
-import type { FC } from "react";
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
 
-interface secretAbdullahProps {}
+export default function Secret() {
+  const [open, setOpen] = React.useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
-const Secret: FC = ({}) => {
-  const router = useRouter();
+  if (isDesktop) {
+    return (
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button variant="outline">Edit Profile</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </DialogDescription>
+          </DialogHeader>
+          <ProfileForm />
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="link"> login</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Store Owner ?</DialogTitle>
-          <DialogDescription>
-            Access the dashboard to make changes to your store.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Email
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Password
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button
-            type="submit"
-            onClick={() => {
-              router.push("/admin");
-            }}
-          >
-            Continue to dashboard
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Edit Profile</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader className="text-left">
+          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerDescription>
+            Make changes to your profile here. Click save when you&apos;re done.
+          </DrawerDescription>
+        </DrawerHeader>
+        <ProfileForm className="px-4" />
+        <DrawerFooter className="pt-2">
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
-};
+}
 
-export default Secret;
+function ProfileForm({ className }: React.ComponentProps<"form">) {
+  return (
+    <form className={cn("grid items-start gap-4", className)}>
+      <div className="grid gap-2">
+        <Label htmlFor="email">Email</Label>
+        <Input type="email" id="email" defaultValue="shadcn@example.com" />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="username">Username</Label>
+        <Input id="username" defaultValue="@shadcn" />
+      </div>
+      <Button type="submit">Save changes</Button>
+    </form>
+  );
+}

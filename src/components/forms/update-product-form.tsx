@@ -78,7 +78,7 @@ const UpdateProductForm: FC<UpdateProductForm> = ({ product }) => {
         })
       );
     }
-  }, [product, images]);
+  }, [product]);
 
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
@@ -114,31 +114,28 @@ const UpdateProductForm: FC<UpdateProductForm> = ({ product }) => {
                 return formattedImages ?? null;
               })
               .then(async (images) => {
-                await axios.post("/api/admin/products/add", {
+                await axios.post("/api/admin/products/update", {
                   ...data,
-
+                  id: product.id,
                   images,
                 });
                 router.push("/admin/products");
-                console.log("this is the images we have in here");
-                console.log(data);
-                console.log(images);
               }),
 
             {
-              loading: "Creating new product...",
-              success: "Product added successfully.",
-              error: "Error creating product.",
+              loading: "Updating the product...",
+              success: "Product updated successfully.",
+              error: "Error Updating product.",
             }
           );
         } else {
-          await axios.post("/api/admin/products/add", {
+          await axios.post("/api/admin/products/update", {
             ...data,
-
+            id: product.id,
             images: null,
           });
 
-          toast.success("Product added successfully.");
+          toast.success("Product updated successfully.");
         }
 
         // form.reset();

@@ -5,6 +5,7 @@ import { ProductsTableShell } from "../../_components/shells/product-table-shell
 import { Metadata } from "next";
 import { dashboardProductsSearchParamsSchema } from "@/lib/validators/params";
 import { DateRangePicker } from "../../_components/date-range-picker";
+import { DeleteProductDialog } from "../../_components/models/dete-product-model";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -98,7 +99,6 @@ const page: FC<ProductsPageProps> = async ({ searchParams }) => {
 
   return (
     <>
-      {/* <DeleteProductDialog /> */}
       <div className=" max-w-[1200px] mx-auto flex-col md:flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">

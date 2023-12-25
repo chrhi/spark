@@ -8,6 +8,7 @@ import { cn, formatPrice } from "@/lib/utils";
 
 import ImageSlider from "./ImageSlider";
 import Image from "next/image";
+import { isArray } from "util";
 
 interface ProductListingProps {
   product: Product | null;
@@ -15,8 +16,6 @@ interface ProductListingProps {
 }
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
-  console.log(product?.images[0].url);
-
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -47,14 +46,20 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
       >
         <div className="flex flex-col w-full ">
           <div className="w-[200px] overflow-hidden h-[200px]">
-            <Image
-              key={""}
-              width={200}
-              height={200}
-              className=" object-cover"
-              alt={product.name + "image"}
-              src={product.images[0]?.url}
-            />
+            {
+              //@ts-expect-error
+              isArray(product?.images) && product?.images[0]?.url && (
+                <Image
+                  key={""}
+                  width={200}
+                  height={200}
+                  className=" object-cover"
+                  alt={product.name + "image"}
+                  //@ts-expect-error
+                  src={product?.images[0]?.url}
+                />
+              )
+            }
           </div>
 
           <h3 className="mt-4 font-medium text-lg text-gray-700">

@@ -10,7 +10,10 @@ export async function POST(request: Request) {
 
   const payload = await request.json();
 
-  await db.product.create({
+  console.log("this is what we get from the body");
+  console.log(payload);
+
+  await db.product.update({
     data: {
       CompareAtPrice: payload?.CompareAtPrice,
       CostPerItem: payload?.CostPerItem,
@@ -21,6 +24,9 @@ export async function POST(request: Request) {
       images: JSON.stringify(payload?.images as string),
       inventory: payload?.inventory,
       subCategory: payload?.subcategory,
+    },
+    where: {
+      id: payload?.id,
     },
   });
 
