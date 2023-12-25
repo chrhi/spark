@@ -3,8 +3,6 @@ import { OrderForm } from "@/components/forms/order-form";
 import type { FC } from "react";
 import YourBagShowCase from "../_components/YourBagShowCase";
 
-interface pageAbdullahProps {}
-
 const page: FC = ({}) => {
   return (
     <MaxWidthWrapper>

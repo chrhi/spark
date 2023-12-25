@@ -3,8 +3,9 @@
 import type { FC } from "react";
 import { useStore } from "@/lib/zustand/store";
 import { Minus, Plus } from "lucide-react";
-import { Icons } from "@/components/Icons";
+
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface YourBagShowCaseAbdullahProps {}
 
@@ -12,7 +13,7 @@ const YourBagShowCase: FC = ({}) => {
   const products = useStore((state) => state.card);
   const reduceQuantity = useStore((state) => state.reduceQuantity);
   const addQuantity = useStore((state) => state.addQuantity);
-  const clearCard = useStore((state) => state.clearCard);
+
   const RemoveProductToCard = useStore((state) => state.RemoveProductToCard);
   return (
     <div className="w-full h-full flex flex-col items-start p-4">
@@ -32,11 +33,12 @@ const YourBagShowCase: FC = ({}) => {
         <ul role="list" className="-my-6 divide-y divide-gray-200">
           {products.map((product) => (
             <li key={product?.product?.id} className="flex py-6">
-              <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                <img
+              <div className="h-24 w-24 reltive flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                <Image
                   src={product?.product?.images[0].url as string}
                   alt={product?.product?.name}
                   className="h-full w-full object-cover object-center"
+                  fill
                 />
               </div>
 
