@@ -47,7 +47,9 @@ export default async function Home() {
                 product={{
                   category: item.category,
                   description: item.description ? item.description : "",
-                  images: JSON.parse(item.images as string) as StoredFile[],
+                  images: item.images
+                    ? (JSON.parse(item.images as string) as StoredFile[])
+                    : [],
                   name: item.name,
                   price: item.price,
                   id: item.id.toString(),
