@@ -18,6 +18,7 @@ import {
   Ghost,
   ShoppingCart,
   Filter,
+  Trash,
 } from "lucide-react";
 
 export const Icons = {
@@ -136,5 +137,6 @@ export const Icons = {
   bag: ShoppingBag,
   ghost: Ghost,
   basket: ShoppingCart,
-  filter: Filter,
+  filter: Filter, 
+  trash : Trash 
 };

@@ -48,3 +48,38 @@ export interface Subcategory {
   image?: string;
   slug: string;
 }
+
+export interface VarinatType {
+  color: {
+    enabled: boolean;
+    variants: {
+      name: string;
+      price: number;
+      in_stock: number;
+    }[];
+  };
+  size: {
+    enabled: boolean;
+    variants: {
+      name: string;
+      price: number;
+      in_stock: number;
+    }[];
+  };
+  material: {
+    enabled: boolean;
+    variants: {
+      name: string;
+      price: number;
+      in_stock: number;
+    }[];
+  };
+  style: {
+    enabled: boolean;
+    variants: {
+      name: string;
+      price: number;
+      in_stock: number;
+    }[];
+  };
+}

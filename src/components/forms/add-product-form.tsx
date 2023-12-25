@@ -29,8 +29,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { productSchema } from "@/lib/validators/product";
-import React from "react";
-import { FileWithPreview } from "@/types";
+import React, { useState } from "react";
+import { FileWithPreview, VarinatType } from "@/types";
 import { z } from "zod";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
@@ -54,6 +54,25 @@ const AddProductForm: FC = ({}) => {
   const router = useRouter();
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
+
+  const [variants, setVarinats] = useState<VarinatType>({
+    color: {
+      enabled: false,
+      variants: [],
+    },
+    size: {
+      enabled: false,
+      variants: [],
+    },
+    material: {
+      enabled: false,
+      variants: [],
+    },
+    style: {
+      enabled: false,
+      variants: [],
+    },
+  });
 
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
@@ -350,70 +369,6 @@ const AddProductForm: FC = ({}) => {
                                 onCheckedChange={field.onChange}
                               />
                             </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                    </>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="w-full my-4 ">
-              <CardContent>
-                <div className="grid w-full items-center gap-2 p-2">
-                  <div className="flex flex-col space-y-1.5">
-                    <>
-                      <FormField
-                        control={form.control}
-                        name="inventory"
-                        render={({ field }) => (
-                          <FormItem className="w-full ">
-                            <FormLabel>Variants</FormLabel>
-                            <FormControl className="w-full">
-                              <>
-                                <div className="flex flex-col  my-4 justify-center gap-y-4 rounded-lg border p-3 shadow-sm">
-                                  <div className="w-full">
-                                    <div className="space-y-0.5">
-                                      <FormLabel>Color</FormLabel>
-                                      <FormDescription>
-                                        Receive emails about new products,
-                                        features, and more.
-                                      </FormDescription>
-                                    </div>
-
-                                    <Switch />
-                                  </div>
-                                  <div className="w-full h-fit flex flex-col justify-start gap-y-2">
-                                    <div className="w-full h-[60px] grid grid-cols-3 mt-4 gap-2">
-                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
-                                        <Label>name</Label>
-                                        <Input
-                                          id="varinat_name"
-                                          placeholder="DZD 0.00"
-                                        />
-                                      </div>
-                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
-                                        <Label>in stock</Label>
-                                        <Input
-                                          id="in_stock"
-                                          placeholder="6 units"
-                                        />
-                                      </div>
-                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
-                                        <Label>price</Label>
-                                        <Input
-                                          id="price"
-                                          placeholder="DZD 0.00"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            </FormControl>
-
-                            <FormMessage />
                           </FormItem>
                         )}
                       />
