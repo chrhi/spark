@@ -25,6 +25,14 @@ export const productSchema = z.object({
     .nullable()
     .default(null),
   continue_selling_when_out_of_stock: z.boolean(),
+
+  CompareAtPrice: z.string().regex(/^\d+(\.\d{1,2})?$/, {
+    message: "Must be a valid price",
+  }),
+
+  CostPerItem: z.string().regex(/^\d+(\.\d{1,2})?$/, {
+    message: "Must be a valid price",
+  }),
 });
 
 export const extendedProductSchema = productSchema.extend({

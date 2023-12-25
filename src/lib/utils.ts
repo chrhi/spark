@@ -44,11 +44,11 @@ export function isArrayOfFile(files: unknown): files is File[] {
 export function formatPrice(
   price: number | string,
   options: {
-    currency?: "USD" | "EUR" | "GBP" | "BDT";
+    currency?: "USD" | "EUR" | "GBP" | "DZD";
     notation?: Intl.NumberFormatOptions["notation"];
   } = {}
 ) {
-  const { currency = "USD", notation = "compact" } = options;
+  const { currency = "DZD", notation = "compact" } = options;
 
   const numericPrice = typeof price === "string" ? parseFloat(price) : price;
 

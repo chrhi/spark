@@ -27,7 +27,6 @@ async function getData({
   let products: Product[] = [];
 
   products = await db.product.findMany({
-    skip: page,
     where: {
       createdAt:
         start_date && end_date
@@ -36,14 +35,8 @@ async function getData({
               lte: end_date, // End of date range
             }
           : {},
-
-      name: name
-        ? {
-            startsWith: name,
-          }
-        : {},
     },
-    take: per_page,
+
     orderBy: [
       {
         createdAt: "asc",
@@ -98,6 +91,8 @@ const page: FC<ProductsPageProps> = async ({ searchParams }) => {
     end_date: toDay,
     name: name ? name : "",
   });
+
+  console.log(data);
 
   const pageCount = Math.ceil(data.length / limit);
 

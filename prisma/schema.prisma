@@ -25,19 +25,19 @@ model Collection {
 }
 
 model Product {
-  id          String      @id @default(uuid())
-  createdAt DateTime @default(now())
-
-  name        String
-  description String?
-  status      STATUS  @default(ACTIVE)
-  images      Json?
-  price       String
-
-  inventory Int @default(1)
-
-  category    String
-  subCategory String
+  id             String      @id @default(uuid())
+  createdAt      DateTime    @default(now())
+  name           String
+  description    String?
+  status         STATUS      @default(ACTIVE)
+  images         Json?
+  price          String
+  CompareAtPrice String
+  CostPerItem    String
+  inventory      Int         @default(1)
+  category       String
+  subCategory    String
+  continue_selling_when_out_of_stock Boolean  @default(false)
 }
 
 model Order {

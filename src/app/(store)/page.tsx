@@ -7,6 +7,8 @@ import { Product } from "@prisma/client";
 import { db } from "@/lib/db";
 import { StoredFile } from "@/types";
 
+export const revalidate = 3600;
+
 async function getData(): Promise<Product[]> {
   const products = await db.product.findMany();
 

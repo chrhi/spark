@@ -30,7 +30,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { productSchema } from "@/lib/validators/product";
 import React, { useState } from "react";
-import { FileWithPreview, VarinatType } from "@/types";
+import { FileWithPreview, StoredFile, VarinatType } from "@/types";
 import { z } from "zod";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
@@ -45,22 +45,55 @@ import Image from "next/image";
 import { categories } from "@/constants/CATEGORIES";
 import { Switch } from "../ui/switch";
 import { getSubcategories, productCategories } from "@/constants/products";
+import { Product } from "@prisma/client";
 
 type Inputs = z.infer<typeof productSchema>;
 
 const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
-const AddProductForm: FC = ({}) => {
+interface UpdateProductForm {
+  product: Product;
+}
+
+const UpdateProductForm: FC<UpdateProductForm> = ({ product }) => {
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
   const router = useRouter();
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
 
+  const images = JSON.parse(product.images as string) as StoredFile[];
+
+  React.useEffect(() => {
+    if (images && images.length > 0) {
+      setFiles(
+        images.map((image) => {
+          const file = new File([], image.name, {
+            type: "image",
+          });
+          const fileWithPreview = Object.assign(file, {
+            preview: image.url,
+          });
+
+          return fileWithPreview;
+        })
+      );
+    }
+  }, [product, images]);
+
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      inventory: NaN,
-      images: [],
+      inventory: product.inventory,
+      category: product.category,
+      subcategory: product.subCategory,
+      CompareAtPrice: product.CompareAtPrice,
+      continue_selling_when_out_of_stock:
+        product.continue_selling_when_out_of_stock,
+      CostPerItem: product.CostPerItem,
+      description: product?.description ? product?.description : "",
+      name: product.name,
+      price: product.price,
+      status: product.status,
     },
   });
 
@@ -487,7 +520,7 @@ const AddProductForm: FC = ({}) => {
                 aria-hidden="true"
               />
             )}
-            Publish
+            Update
             <span className="sr-only">Add Product</span>
           </Button>
         </div>
@@ -496,4 +529,4 @@ const AddProductForm: FC = ({}) => {
   );
 };
 
-export default AddProductForm;
+export default UpdateProductForm;
