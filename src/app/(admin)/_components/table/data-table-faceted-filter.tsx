@@ -21,6 +21,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { Filter } from "lucide-react";
 
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>;
@@ -42,9 +43,9 @@ export function DataTableFacetedFilter<TData, TValue>({
           aria-label="Filter rows"
           variant="outline"
           size="sm"
-          className="h-8 border-dashed"
+          className="h-8 border-dashed bg-white"
         >
-          <PlusCircledIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+          <Filter className="mr-2 h-4 w-4" aria-hidden="true" />
           {title}
           {selectedValues?.size > 0 && (
             <>

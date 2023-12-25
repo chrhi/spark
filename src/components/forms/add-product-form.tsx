@@ -358,6 +358,70 @@ const AddProductForm: FC = ({}) => {
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="w-full my-4 ">
+              <CardContent>
+                <div className="grid w-full items-center gap-2 p-2">
+                  <div className="flex flex-col space-y-1.5">
+                    <>
+                      <FormField
+                        control={form.control}
+                        name="inventory"
+                        render={({ field }) => (
+                          <FormItem className="w-full ">
+                            <FormLabel>Variants</FormLabel>
+                            <FormControl className="w-full">
+                              <>
+                                <div className="flex flex-col  my-4 justify-center gap-y-4 rounded-lg border p-3 shadow-sm">
+                                  <div className="w-full">
+                                    <div className="space-y-0.5">
+                                      <FormLabel>Color</FormLabel>
+                                      <FormDescription>
+                                        Receive emails about new products,
+                                        features, and more.
+                                      </FormDescription>
+                                    </div>
+
+                                    <Switch />
+                                  </div>
+                                  <div className="w-full h-fit flex flex-col justify-start gap-y-2">
+                                    <div className="w-full h-[60px] grid grid-cols-3 mt-4 gap-2">
+                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                        <Label>name</Label>
+                                        <Input
+                                          id="varinat_name"
+                                          placeholder="DZD 0.00"
+                                        />
+                                      </div>
+                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                        <Label>in stock</Label>
+                                        <Input
+                                          id="in_stock"
+                                          placeholder="6 units"
+                                        />
+                                      </div>
+                                      <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
+                                        <Label>price</Label>
+                                        <Input
+                                          id="price"
+                                          placeholder="DZD 0.00"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
           {/* this is the second clomun */}
           <div className="w-full h-fit flex flex-col items-center">

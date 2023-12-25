@@ -39,7 +39,7 @@ export function DataTablePagination<TData>({
               table.setPageSize(Number(value));
             }}
           >
-            <SelectTrigger className="h-8 w-[70px]">
+            <SelectTrigger className="h-8 w-[70px] bg-white">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
@@ -60,7 +60,7 @@ export function DataTablePagination<TData>({
             aria-label="Go to first page"
             variant="outline"
             size="icon"
-            className="hidden h-8 w-8 lg:flex"
+            className="hidden h-8 w-8 bg-white lg:flex"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
@@ -70,7 +70,7 @@ export function DataTablePagination<TData>({
             aria-label="Go to previous page"
             variant="outline"
             size="icon"
-            className="h-8 w-8"
+            className="h-8 w-8 bg-white "
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -80,7 +80,7 @@ export function DataTablePagination<TData>({
             aria-label="Go to next page"
             variant="outline"
             size="icon"
-            className="h-8 w-8"
+            className="h-8 w-8 bg-white"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
@@ -90,7 +90,7 @@ export function DataTablePagination<TData>({
             aria-label="Go to last page"
             variant="outline"
             size="icon"
-            className="hidden h-8 w-8 lg:flex"
+            className="hidden h-8 w-8 lg:flex bg-white"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >

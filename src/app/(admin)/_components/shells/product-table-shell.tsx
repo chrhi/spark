@@ -23,6 +23,8 @@ import { DataTable } from "../table/data-table";
 import { DataTableColumnHeader } from "../table/data-table-head";
 import { Product } from "@prisma/client";
 import { categories } from "@/constants/CATEGORIES";
+import Image from "next/image";
+import { StoredFile } from "@/types";
 
 interface ProductsTableShellProps {
   data: Product[];
@@ -74,8 +76,26 @@ export function ProductsTableShell({
       {
         accessorKey: "name",
         header: ({ column }) => (
-          <DataTableColumnHeader column={column} title="Name" />
+          <DataTableColumnHeader column={column} title="Prodcut" />
         ),
+        cell: ({ row }) => {
+          const images = JSON.parse(
+            row.original.images as string
+          ) as StoredFile[];
+
+          return (
+            <div className="w-fit h-[40px] flex items-center gap-x-2">
+              <Image
+                src={images ? images[0]?.url : ""}
+                alt={row.original.name}
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
+              <p>{row.original.name}</p>
+            </div>
+          );
+        },
       },
       {
         accessorKey: "category",
