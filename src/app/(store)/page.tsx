@@ -2,12 +2,9 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Banner from "./_components/Banner";
 import ProductsLine from "./_components/products-line";
 import ProductListing from "./_components/ProductListing";
-import ImageSlider from "./_components/ImageSlider";
 import { Product } from "@prisma/client";
 import { db } from "@/lib/db";
 import { StoredFile } from "@/types";
-
-export const revalidate = 3600;
 
 async function getData(): Promise<Product[]> {
   const products = await db.product.findMany();
