@@ -8,17 +8,12 @@ import { StoredFile } from "@/types";
 
 async function getData(): Promise<Product[]> {
   const products = await db.product.findMany();
-
   // Fetch data from your API here.
   return products;
 }
 
 export default async function Home() {
   const products = await getData();
-
-  console.log(products);
-
-  //mahdichehri
 
   return (
     <>
