@@ -1,10 +1,13 @@
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Banner() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 h-[70%]">
-      <img
-        src="./spark.jpg"
+    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 ">
+      <Image
+        fill
+        src="/spark.jpg"
         alt="this is store banner"
         className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
       />
@@ -32,7 +35,7 @@ export default function Banner() {
           }}
         />
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <MaxWidthWrapper>
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
             Industrial design meets fashion.
@@ -48,7 +51,7 @@ export default function Banner() {
             Shop bow
           </Button>
         </div>
-      </div>
+      </MaxWidthWrapper>
     </div>
   );
 }

@@ -29,7 +29,7 @@ const Navs = [
 
 const NavBar: FC = ({}) => {
   return (
-    <div className="w-full h-[70px] sticky top-0 z-[99]  bg-white border-b flex items-center ">
+    <div className="w-full h-[70px] sticky top-0 z-[20] bg-white border-b flex items-center ">
       <MaxWidthWrapper className="mx-auto h-full ">
         <div className="w-full h-full flex items-center justify-between border-b">
           <MobilMenu />
@@ -37,7 +37,7 @@ const NavBar: FC = ({}) => {
             <Link href={"/"}>
               <p className="text-2xl font-bold text-black"> Spark</p>
             </Link>
-            <div>
+            <div className="hidden lg:flex items-center justify-start gap-x-4 h-full w-fit">
               {Navs.map((item) => {
                 return (
                   <Button
