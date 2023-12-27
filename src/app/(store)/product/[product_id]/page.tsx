@@ -65,23 +65,6 @@ const page: FC<PageProps> = async ({ params }) => {
             {product.price} dz
           </p>
 
-          <div className="w-full h-fit flex flex-col ">
-            <p>Size</p>
-            <div className="w-full min-h-[50px] my-4 h-fit flex flex-wrap gap-4">
-              <Button className="rounded-full bg-black" size="lg">
-                M
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Xl
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Lg
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Xs{" "}
-              </Button>
-            </div>
-          </div>
           <div className="w-full h-fit  flex flex-col items-center justify-start gap-y-8">
             <Button
               className="w-full bg-black rounded-full h-[50px]"
