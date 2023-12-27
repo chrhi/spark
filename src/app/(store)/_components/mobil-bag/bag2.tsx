@@ -47,7 +47,7 @@ const Bag2: FC = ({}) => {
           )}{" "}
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="p-4 ">
+      <DrawerContent>
         {current === 1 ? (
           <OrderForm />
         ) : products.length === 0 ? (

@@ -22,7 +22,7 @@ export function ProdoctsCarousel({ products, title }: Props) {
   return (
     <Carousel className="w-full  ">
       <div className="w-full my-6 h-[50px] flex items-center justify-between px-2">
-        <h2 className="text-4xl font-bold text-start ">{title}</h2>
+        <h2 className=" text-2xl lg:text-4xl font-bold text-start ">{title}</h2>
         <div className="w-[100px] h-full flex items-center justify-end gap-x-4 ">
           <CarouselPrevious />
           <CarouselNext />

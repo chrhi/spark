@@ -82,8 +82,8 @@ const MobilMenu: FC = ({}) => {
             <span className="sr-only">Home</span>
           </Link>
         </div>
-        <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-          <div className="pl-1 pr-7">
+        <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-4">
+          <div className="pl-1 pr-5">
             <Accordion
               type="multiple"
               defaultValue={productCategories.map((item) => item.title)}

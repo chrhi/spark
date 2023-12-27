@@ -38,14 +38,6 @@ export function OrderForm() {
     console.log(values);
   }
 
-  const [selectedWillaya, setSelectedWillaya] = useState("Chlef");
-
-  useEffect(() => {
-    setSelectedWillaya(form.getValues("willaya"));
-
-    console.log(selectedWillaya);
-  }, [form, selectedWillaya]);
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -56,7 +48,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input className="h-12" placeholder="shadcn" {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +61,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input className="h-12" placeholder="shadcn" {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,7 +74,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input className="h-12" placeholder="shadcn" {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,7 +87,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className="h-12" placeholder="shadcn" {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,7 +106,7 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full h-12">
+                    <SelectTrigger className="w-full ">
                       <SelectValue placeholder="Alger" />
                     </SelectTrigger>
                     <SelectContent>
@@ -144,7 +136,7 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full h-12">
+                    <SelectTrigger className="w-full ">
                       <SelectValue placeholder="Theme" />
                     </SelectTrigger>
                     <SelectContent>
@@ -173,17 +165,14 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Street</FormLabel>
               <FormControl>
-                <Input className="h-12" placeholder="your address" {...field} />
+                <Input placeholder="your address" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button
-          className="w-full h-12 bg-black font-bold text-xl"
-          type="submit"
-        >
+        <Button className="w-full bg-black " type="submit">
           Confirme Order
         </Button>
       </form>

@@ -105,7 +105,7 @@ export function ProductImageCarousel({
           >
             {images.map((image, index) => (
               <div
-                className="relative w-full h-full aspect-square min-w-0 flex-[0_0_100%] pl-4"
+                className="relative w-full flex justify-center h-full aspect-square min-w-0 flex-[0_0_100%] pl-4"
                 key={index}
               >
                 <Image
@@ -117,7 +117,7 @@ export function ProductImageCarousel({
                   alt={image.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-contain"
+                  className="object-contain mx-auto"
                   priority={index === 0}
                 />
               </div>

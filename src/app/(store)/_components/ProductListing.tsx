@@ -4,7 +4,7 @@ import { Product } from "@/types";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice, truncate } from "@/lib/utils";
 
 import ImageSlider from "./ImageSlider";
 import Image from "next/image";
@@ -63,7 +63,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           </div>
 
           <h3 className="mt-4 font-medium text-lg text-gray-700">
-            {product.name}
+            {truncate(product.name, 15)}
           </h3>
 
           <p className="mt-1 font-medium text-sm text-gray-900">
