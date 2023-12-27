@@ -38,7 +38,7 @@ export function ErrorCard({
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
-      className={cn("grid w-full place-items-center", className)}
+      className={cn("grid w-full place-items-center h-full", className)}
       {...props}
     >
       <CardHeader>

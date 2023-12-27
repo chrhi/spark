@@ -1,91 +1,39 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { FC } from "react";
 
-export default function ProductLoading() {
+const page: FC = ({}) => {
   return (
-    <>
-      <div className="flex items-center space-x-2">
-        <Skeleton className="h-6 w-14" />
-        <Skeleton className="h-6 w-14" />
-        <Skeleton className="h-6 w-14" />
-      </div>
-      <div className="flex flex-col gap-8 md:flex-row md:gap-16">
-        <div className="w-full md:w-1/2">
-          <div className="flex flex-col gap-2">
-            <div
-              aria-label="Placeholder"
-              role="img"
-              aria-roledescription="placeholder"
-              className="flex aspect-square h-full flex-1 items-center justify-center bg-secondary"
-            >
-              {/* <Icons.placeholder
-                className="h-9 w-9 text-muted-foreground"
-                aria-hidden="true"
-              /> */}
-            </div>
-            <div className="flex w-full items-center justify-center gap-2">
-              <Skeleton className="h-7 w-7 rounded-none" />
-              {Array.from({ length: 3 }).map((_, i) => (
-                <Skeleton
-                  key={i}
-                  className="aspect-square h-full w-full max-w-[100px] rounded-none"
-                />
-              ))}
-              <Skeleton className="h-7 w-7 rounded-none" />
+    <MaxWidthWrapper className="max-w-screen-2xl">
+      <div className="w-full min-h-[500px] h-fit grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 py-2 md:py-6 lg:py-8 ">
+        <div className=" flex flex-col w-full h-full  col-span-3 md:col-span-1 lg:col-span-2 ">
+          <Skeleton className="w-[50%] h-2 rounded-full mt-4" />
+          <Skeleton className="w-full h-full min-h-[350px] rounded-lg my-4" />
+        </div>
+        <div className="flex  flex-col gap-y-4 col-span-3 md:col-span-1 items-start p-4 w-full h-full">
+          <Skeleton className="w-full h-6 rounded-full " />
+          <Skeleton className="w-[30%] h-6 rounded-full " />
+          <div className="w-full flex flex-col items-center my-2">
+            <Skeleton className="w-[30px] h-2 rounded-full " />
+          </div>
+
+          <div className="w-full h-fit  flex flex-col items-center justify-start gap-y-8">
+            <Skeleton className="w-full h-[50px] rounded-full my-4" />
+
+            <Skeleton className="w-full h-[50px] rounded-full my-4" />
+          </div>
+          <div className="w-full h-fit ">
+            <Skeleton className="w-full h-6 rounded-full my-4" />
+            <div className="w-full flex flex-col items-start gap-y-2">
+              <Skeleton className="w-full h-4 rounded-full " />
+              <Skeleton className="w-[70%] h-4 rounded-full " />
+              <Skeleton className="w-[30%] h-4 rounded-full " />
             </div>
           </div>
         </div>
-        <Separator className="mt-4 md:hidden" />
-        <div className="flex w-full flex-col gap-4 md:w-1/2">
-          <div className="space-y-2">
-            <Skeleton className="h-9 w-16" />
-            <Skeleton className="h-6 w-10" />
-            <Skeleton className="h-6 w-14" />
-          </div>
-          <Separator className="my-1.5" />
-          <div className="flex items-center space-x-2">
-            <Skeleton className="h-8 w-[7.5rem]" />
-            <Skeleton className="h-8 w-24" />
-          </div>
-          <Separator className="mb-2.5 mt-5" />
-          <div className="flex items-center">
-            <Skeleton className="h-7 w-16" />
-            <Skeleton className="ml-auto h-4 w-4" />
-          </div>
-          <Separator className="mt-2.5" />
-        </div>
       </div>
-      <div className="overflow-hidden md:pt-6">
-        <Skeleton className="h-9 w-14" />
-        <div className="overflow-x-auto pb-2 pt-6">
-          <div className="flex gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Card key={i} className="min-w-[260px] rounded-sm">
-                <CardHeader className="border-b p-0">
-                  <AspectRatio ratio={4 / 3}></AspectRatio>
-                </CardHeader>
-                <CardContent className="grid gap-2.5 p-4">
-                  <Skeleton className="h-4 w-1/2" />
-                  <Skeleton className="h-4 w-1/4" />
-                </CardContent>
-                <CardFooter className="p-4">
-                  <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:justify-between">
-                    <Skeleton className="h-8 w-full rounded-sm" />
-                    <Skeleton className="h-8 w-full rounded-sm" />
-                  </div>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
+    </MaxWidthWrapper>
   );
-}
+};
+
+export default page;

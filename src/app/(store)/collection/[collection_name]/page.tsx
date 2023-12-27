@@ -56,8 +56,8 @@ const page: FC<PageProps> = async ({ params }) => {
 
   const products = await getProducts({ subCategory: collection });
 
-  if (!products) {
-    throw new Error("this is an error");
+  if (!products || products.length === 0) {
+    notFound();
   }
   return (
     <MaxWidthWrapper className="w-full max-w-screen-2xl flex flex-col items-start h-fit">
