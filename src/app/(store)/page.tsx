@@ -20,11 +20,11 @@ export default async function Home() {
     <>
       <Banner />
       <MaxWidthWrapper className="max-w-screen-2xl">
-        <div className="my-4 w-full h-[200px] flex flex-col justify-center items-start gap-y-4">
-          <h1 className="text-4xl mt-2 lg:text-5xl font-bold  text-start text-black">
+        <div className="my-8 w-full h-[200px] flex flex-col justify-center items-start gap-y-4">
+          <h1 className="text-2xl mt-2 lg:text-5xl font-bold  text-start text-black">
             Obsessive Attention. Intelligent Effort.
           </h1>
-          <p className="text-start text-gray-700  text-lg lg:text-xl ">
+          <p className="text-start text-gray-700  text-md lg:text-xl ">
             Functional handbags made of luxurious materials to improve
             people&apos;s lives in small but mighty ways.
           </p>

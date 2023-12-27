@@ -53,8 +53,8 @@ model Order {
   products      String
   total         Float
   shipping      Float
-  confirmed     Boolean
-  retured       Boolean
+  confirmed     Boolean?
+  retured       Boolean?
 }
 
 model Customer {
