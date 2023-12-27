@@ -6,6 +6,8 @@ import type { FC } from "react";
 import ProductListing from "../../_components/ProductListing";
 import { Product } from "@prisma/client";
 import { StoredFile } from "@/types";
+import Filter from "../../_components/filter";
+import Sort from "../../_components/sort";
 
 interface PageProps {
   params: {
@@ -62,8 +64,8 @@ const page: FC<PageProps> = async ({ params }) => {
       <div className="w-full h-[150px] pt-8 flex flex-col justify-between  ">
         <h1 className="text-3xl font-bold">{formatTitle(collection)}</h1>
         <div className="h-[50px] w-full flex items-center gap-x-4 justify-start">
-          <Button>filter</Button>
-          <Button>sort by</Button>
+          <Filter />
+          <Sort />
         </div>
       </div>
       <div className="w-full   min-h-[500px] h-fit grid grid-cols-2 gap-2 md:gap-4   md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
