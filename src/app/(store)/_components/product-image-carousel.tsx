@@ -88,7 +88,7 @@ export function ProductImageCarousel({
 
   return (
     <>
-      {/* <div
+      <div
         aria-label="Product image carousel"
         className={cn(
           "flex  flex-col gap-2  relative w-full h-[70%]",
@@ -103,7 +103,7 @@ export function ProductImageCarousel({
           priority
           className="object-contain"
         />
-      </div> */}
+      </div>
       <div
         aria-label="Product image carousel"
         className={cn("flex  flex-col gap-2  w-full  h-[700px] ", className)}

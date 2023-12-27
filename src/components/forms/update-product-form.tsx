@@ -147,8 +147,6 @@ const UpdateProductForm: FC<UpdateProductForm> = ({ product }) => {
   });
 
   async function onSubmit(data: Inputs) {
-    console.log("this is the data");
-    console.log(data);
     await mutateAsync(data);
 
     // here redirect the user to the products page

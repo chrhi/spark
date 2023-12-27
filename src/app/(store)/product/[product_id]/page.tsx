@@ -42,7 +42,7 @@ const page: FC<PageProps> = async ({ params }) => {
     <MaxWidthWrapper>
       <div className="w-full min-h-[500px] h-fit grid grid-cols-3 py-8 ">
         <div className=" flex flex-col w-full h-full col-span-2">
-          <Breadcrumbs />
+          <Breadcrumbs category={product.category} productName={product.name} />
 
           <ProductImageCarousel
             className="w-full md:w-full"
@@ -60,27 +60,10 @@ const page: FC<PageProps> = async ({ params }) => {
           <p className="text-gray-700 text-xl">
             {" "}
             <span className="text-red-500  text-xl line-through">
-              {product.price} dz
+              {product.CompareAtPrice} dz
             </span>{" "}
             {product.price} dz
           </p>
-          <div className="w-full  h-fit flex flex-col ">
-            <p>Color</p>
-            <div className="w-full min-h-[50px] my-4 flex flex-wrap gap-4">
-              <Button className="rounded-full bg-black" size="lg">
-                Black
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Pink
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Blue
-              </Button>
-              <Button className="rounded-full" variant="ghost" size="lg">
-                Night Blue
-              </Button>
-            </div>
-          </div>
 
           <div className="w-full h-fit flex flex-col ">
             <p>Size</p>

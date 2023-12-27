@@ -45,7 +45,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         href={`/product/${product.id}`}
       >
         <div className="flex flex-col w-full ">
-          <div className="w-[200px] overflow-hidden h-[200px]">
+          <div className="w-[180px] overflow-hidden h-[180px]  lg:h-[250px] lg:w-[250px]">
             {
               //@ts-expect-error
               isArray(product?.images) && product?.images[0]?.url && (
@@ -65,8 +65,11 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           <h3 className="mt-4 font-medium text-lg text-gray-700">
             {product.name}
           </h3>
-          <p className="mt-1 text-md text-gray-500">{"this is lable"}</p>
+
           <p className="mt-1 font-medium text-sm text-gray-900">
+            <span className="line-through text-red-500 mr-3">
+              {formatPrice(product.CompareAtPrice)}
+            </span>{" "}
             {formatPrice(product.price)}
           </p>
         </div>
