@@ -81,6 +81,10 @@ export function formatDate(date: Date | string | number) {
   }).format(new Date(date));
 }
 
+export function truncate(str: string, length: number) {
+  return str.length > length ? `${str.substring(0, length)}...` : str;
+}
+
 export function constructMetadata({
   title = "DigitalHippo - the marketplace for digital assets",
   description = "DigitalHippo is an open-source marketplace for high-quality digital goods.",

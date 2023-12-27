@@ -11,6 +11,7 @@ import { Product } from "@prisma/client";
 import { notFound } from "next/navigation";
 import { StoredFile } from "@/types";
 import AddProductToCard from "../../_components/AddProductToCard";
+import { formatPrice } from "@/lib/utils";
 
 interface PageProps {
   params: {
@@ -40,12 +41,12 @@ const page: FC<PageProps> = async ({ params }) => {
 
   return (
     <MaxWidthWrapper>
-      <div className="w-full min-h-[500px] h-fit grid grid-cols-3 py-8 ">
-        <div className=" flex flex-col w-full h-full col-span-2">
+      <div className="w-full min-h-[500px] h-fit grid grid-cols-3 py-2 md:py-6 lg:py-8 ">
+        <div className=" flex flex-col w-full h-full  col-span-3 md:col-span-1 lg:col-span-2 ">
           <Breadcrumbs category={product.category} productName={product.name} />
 
           <ProductImageCarousel
-            className="w-full md:w-full"
+            className="w-full "
             images={JSON.parse(product.images as string) as StoredFile[]}
             options={{
               loop: true,
@@ -53,16 +54,16 @@ const page: FC<PageProps> = async ({ params }) => {
           />
           <Separator className="mt-4 md:hidden" />
         </div>
-        <div className="flex flex-col gap-y-4 col-span-1 items-start p-4 w-full h-full">
-          <h1 className="text-gray-950 text-5xl font-bold text-start">
+        <div className="flex  flex-col gap-y-4 col-span-3 md:col-span-1 items-start p-4 w-full h-full">
+          <h1 className="text-gray-950 text-3xl md:text-5xl font-bold text-start">
             {product.name}
           </h1>
           <p className="text-gray-700 text-xl">
             {" "}
             <span className="text-red-500  text-xl line-through">
-              {product.CompareAtPrice} dz
+              {formatPrice(product.CompareAtPrice)}
             </span>{" "}
-            {product.price} dz
+            {formatPrice(product.price)}
           </p>
 
           <div className="w-full h-fit  flex flex-col items-center justify-start gap-y-8">

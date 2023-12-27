@@ -1,17 +1,34 @@
 "use client";
 
 import { Drawer } from "vaul";
+
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import React from "react";
 import { Ghost, ShoppingBag } from "lucide-react";
+import { Icons } from "@/components/Icons";
+import { useStore } from "@/lib/zustand/store";
+import { Minus, Plus } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function MobileBag() {
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const products = useStore((state) => state.card);
+  const reduceQuantity = useStore((state) => state.reduceQuantity);
+  const addQuantity = useStore((state) => state.addQuantity);
+  const clearCard = useStore((state) => state.clearCard);
+  const RemoveProductToCard = useStore((state) => state.RemoveProductToCard);
   return (
     <Drawer.Root shouldScaleBackground>
       <Drawer.Trigger asChild>
-        <ShoppingBag className="w-5 h-5 md:hidden" />
+        <Button className="relative" variant="ghost" size="icon">
+          <Icons.bag className="w-5 h-5  md:hidden" />
+          {products.length !== 0 && (
+            <span className=" w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-[50%] absolute top-0 -right-2">
+              {products.length}
+            </span>
+          )}{" "}
+        </Button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />

@@ -90,7 +90,10 @@ export function ProductImageCarousel({
     <>
       <div
         aria-label="Product image carousel"
-        className={cn("flex  flex-col gap-2  w-full  h-[700px] ", className)}
+        className={cn(
+          "flex  flex-col gap-2  w-full h-[350px] lg:h-[700px] ",
+          className
+        )}
         {...props}
       >
         <div ref={emblaRef} className="overflow-hidden w-full h-[700px]">
@@ -142,7 +145,7 @@ export function ProductImageCarousel({
                 variant="outline"
                 size="icon"
                 className={cn(
-                  "group relative aspect-square h-full w-full max-w-[150px] rounded-none shadow-sm hover:bg-transparent focus-visible:ring-foreground",
+                  "group relative aspect-square h-full w-full max-w-[150px] min-h-[70px] rounded-none shadow-sm hover:bg-transparent focus-visible:ring-foreground",
                   i === selectedIndex && "ring-1 ring-foreground"
                 )}
                 onClick={() => scrollTo(i)}
