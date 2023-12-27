@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Product } from "@/types";
+import { toast } from "sonner";
 
 interface BearState {
   card: { product: Product; qnt: number }[];
@@ -16,8 +17,24 @@ export const useStore = create<BearState>((set, get) => ({
     set(() => {
       if (get().card.find((item) => item.product.id === product.id)) {
         get().addQuantity(product.id);
+
+        toast(`product already exists`, {
+          description: `${product.name} has been added`,
+          action: {
+            label: "Undo",
+            onClick: () => get().reduceQuantity(product.id),
+          },
+        });
         return { card: [...get().card] };
       }
+
+      toast(`new product has been added`, {
+        description: `${product.name} has been added`,
+        action: {
+          label: "Undo",
+          onClick: () => get().RemoveProductToCard(product.id),
+        },
+      });
 
       return { card: [...get().card, { product, qnt: 1 }] };
     }),

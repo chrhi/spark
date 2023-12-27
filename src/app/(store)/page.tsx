@@ -5,6 +5,7 @@ import ProductListing from "./_components/ProductListing";
 import { Product } from "@prisma/client";
 import { db } from "@/lib/db";
 import { StoredFile } from "@/types";
+import { ProdoctsCarousel } from "./_components/products-carousel";
 
 async function getData(): Promise<Product[]> {
   const products = await db.product.findMany();
@@ -18,42 +19,21 @@ export default async function Home() {
   return (
     <>
       <Banner />
-      <MaxWidthWrapper>
-        <div className="my-4 w-full h-[200px] flex flex-col justify-center items-center gap-y-4">
-          <h1 className="text-4xl mt-2 lg:text-5xl font-semibold text-center text-black">
+      <MaxWidthWrapper className="max-w-screen-2xl">
+        <div className="my-4 w-full h-[200px] flex flex-col justify-center items-start gap-y-4">
+          <h1 className="text-4xl mt-2 lg:text-5xl font-bold  text-start text-black">
             Obsessive Attention. Intelligent Effort.
           </h1>
-          <p className="text-center text-gray-700  text-lg lg:text-xl ">
+          <p className="text-start text-gray-700  text-lg lg:text-xl ">
             Functional handbags made of luxurious materials to improve
             people&apos;s lives in small but mighty ways.
           </p>
         </div>
         {/* <ProductsLine title="Best salles" /> */}
 
-        <ProductsLine title="Best sells" href="/">
-          {products.map((item, index) => {
-            return (
-              <ProductListing
-                key={item.id + "best sells"}
-                index={index}
-                product={{
-                  CompareAtPrice: item.CompareAtPrice,
-                  continue_selling_when_out_of_stock:
-                    item.continue_selling_when_out_of_stock,
-                  CostPerItem: item.CostPerItem,
-                  category: item.category,
-                  description: item.description ? item.description : "",
-                  images: item.images
-                    ? (JSON.parse(item.images as string) as StoredFile[])
-                    : [],
-                  name: item.name,
-                  price: item.price,
-                  id: item.id.toString(),
-                }}
-              />
-            );
-          })}
-        </ProductsLine>
+        <ProdoctsCarousel title="BEST SELLS" products={products} />
+        <ProdoctsCarousel title="PARTY LOOKS" products={products} />
+        <ProdoctsCarousel title="RECENTLY ADDED" products={products} />
       </MaxWidthWrapper>
     </>
   );

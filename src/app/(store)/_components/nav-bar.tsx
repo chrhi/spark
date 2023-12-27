@@ -5,6 +5,8 @@ import { MobileBag } from "./mobil-bag/bag";
 import Bag from "./bag";
 import Link from "next/link";
 import { ShopeNavigationMenu } from "./navigation-menu";
+import ProductsCommandMenu from "./ProductsCommandMenu";
+import Bag2 from "./mobil-bag/bag2";
 
 interface NavBarAbdullahProps {}
 
@@ -25,12 +27,14 @@ const NavBar: FC = ({}) => {
             <ShopeNavigationMenu />
           </div>
 
-          <div className="w-[30%] h-full flex items-center  justify-end ">
-            <SearchInput />
-            <div className="hidden lg:block">
+          <div className="w-[30%] h-full flex items-center gap-x-1 justify-end ">
+            <ProductsCommandMenu />
+            <div className="hidden md:block">
               <Bag />
             </div>
-            <MobileBag />
+            <div className="md:hidden ">
+              <Bag2 />
+            </div>
           </div>
         </div>
       </div>

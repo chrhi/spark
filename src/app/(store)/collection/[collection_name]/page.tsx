@@ -60,15 +60,15 @@ const page: FC<PageProps> = async ({ params }) => {
     throw new Error("this is an error");
   }
   return (
-    <MaxWidthWrapper className="w-full flex flex-col items-start h-fit">
-      <div className="w-full h-[150px] pt-8 flex flex-col justify-between  ">
+    <MaxWidthWrapper className="w-full max-w-screen-2xl flex flex-col items-start h-fit">
+      <div className="w-full mb-4 h-[150px] pt-8 flex flex-col justify-between  ">
         <h1 className="text-3xl font-bold">{formatTitle(collection)}</h1>
         <div className="h-[50px] w-full flex items-center gap-x-4 justify-start">
           <Filter />
           <Sort />
         </div>
       </div>
-      <div className="w-full   min-h-[500px] h-fit grid grid-cols-2 gap-2 md:gap-4   md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="w-full   px-3 min-h-[500px] h-fit grid grid-cols-2 gap-2 md:gap-4   md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {products.map((item, index) => {
           return (
             <ProductListing

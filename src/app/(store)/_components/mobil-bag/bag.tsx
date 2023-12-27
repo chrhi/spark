@@ -22,7 +22,7 @@ export function MobileBag() {
     <Drawer.Root shouldScaleBackground>
       <Drawer.Trigger asChild>
         <Button className="relative" variant="ghost" size="icon">
-          <Icons.bag className="w-5 h-5  md:hidden" />
+          <Icons.bag className="w-5 h-5  " />
           {products.length !== 0 && (
             <span className=" w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-[50%] absolute top-0 -right-2">
               {products.length}

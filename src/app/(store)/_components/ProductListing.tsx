@@ -45,7 +45,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         href={`/product/${product.id}`}
       >
         <div className="flex flex-col w-full ">
-          <div className="w-[180px] overflow-hidden h-[180px]  lg:h-[250px] lg:w-[250px]">
+          <div className="w-[150px] overflow-hidden h-[170px]  lg:h-[250px] lg:w-[250px]">
             {
               //@ts-expect-error
               isArray(product?.images) && product?.images[0]?.url && (

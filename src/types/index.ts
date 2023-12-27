@@ -26,6 +26,12 @@ export type Product = {
   continue_selling_when_out_of_stock: boolean;
 };
 
+export function isMacOs() {
+  if (typeof window === "undefined") return false;
+
+  return window.navigator.userAgent.includes("Mac");
+}
+
 export interface StoredFile {
   id: string;
   name: string;

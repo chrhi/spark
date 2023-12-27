@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import { StoredFile } from "@/types";
 import AddProductToCard from "../../_components/AddProductToCard";
 import { formatPrice } from "@/lib/utils";
+import { ProdoctsCarousel } from "../../_components/products-carousel";
 
 interface PageProps {
   params: {
@@ -30,6 +31,16 @@ async function getData(id: string): Promise<Product | null> {
   return product;
 }
 
+async function getProducts(category: string): Promise<Product[] | null> {
+  const products = await db.product.findMany({
+    where: {
+      category,
+    },
+  });
+
+  return products;
+}
+
 const page: FC<PageProps> = async ({ params }) => {
   const { product_id } = params;
 
@@ -39,11 +50,16 @@ const page: FC<PageProps> = async ({ params }) => {
     notFound();
   }
 
+  const products = await getProducts(product.category);
+
   return (
-    <MaxWidthWrapper>
-      <div className="w-full min-h-[500px] h-fit grid grid-cols-3 py-2 md:py-6 lg:py-8 ">
+    <MaxWidthWrapper className="max-w-screen-2xl">
+      <div className="w-full min-h-[500px] h-fit grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 py-2 md:py-6 lg:py-8 ">
         <div className=" flex flex-col w-full h-full  col-span-3 md:col-span-1 lg:col-span-2 ">
-          <Breadcrumbs category={product.category} productName={product.name} />
+          <Breadcrumbs
+            category={product.subCategory}
+            productName={product.name}
+          />
 
           <ProductImageCarousel
             className="w-full "
@@ -96,6 +112,12 @@ const page: FC<PageProps> = async ({ params }) => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="w-full h-fit my-8">
+        <ProdoctsCarousel
+          title="YOU MAY ALSO LIKE"
+          products={products ? products : []}
+        />
       </div>
     </MaxWidthWrapper>
   );

@@ -7,7 +7,7 @@ export default function Banner() {
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 ">
       <Image
         fill
-        src="/banner-3.jpg"
+        src="/banner.jpg"
         alt="this is store banner"
         className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
       />
@@ -37,16 +37,16 @@ export default function Banner() {
       </div>
       <MaxWidthWrapper>
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
             Industrial design meets fashion.
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-800">
+          <p className="mt-6 text-lg leading-8 text-gray-300">
             Atypical leather goods
           </p>
           <Button
             variant={"ghost"}
             size={"lg"}
-            className=" border-black border-[5px] text-black rounded-none"
+            className=" border-white border-[5px] text-white rounded-none"
           >
             Shop bow
           </Button>

@@ -148,7 +148,7 @@ const Bag: FC = ({}) => {
               <div className="mt-6">
                 <Link
                   href="/order-product"
-                  className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm "
                 >
                   Order Now
                 </Link>
