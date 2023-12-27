@@ -109,6 +109,10 @@ const page: FC<PageProps> = async ({ params }) => {
             </Button>
             <AddProductToCard
               product={{
+                CompareAtPrice: product.CompareAtPrice,
+                continue_selling_when_out_of_stock:
+                  product.continue_selling_when_out_of_stock,
+                CostPerItem: product.CostPerItem,
                 category: product.category,
                 description: product.description ? product.description : "",
                 id: product.id,
@@ -126,64 +130,6 @@ const page: FC<PageProps> = async ({ params }) => {
           </div>
         </div>
       </div>
-      <ProductsLine title="You might also like" href="/">
-        <ProductListing
-          index={9}
-          product={{
-            category: "rolex",
-            description:
-              "this is hight quality watch you need to have in your packet",
-            images: [
-              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-            ],
-            name: "rolex detona",
-            price: 90000,
-            id: "uiiiii",
-          }}
-        />
-        <ProductListing
-          index={9}
-          product={{
-            category: "rolex",
-            description:
-              "this is hight quality watch you need to have in your packet",
-            images: [
-              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-            ],
-            name: "rolex detona",
-            price: 90000,
-            id: "uiiiii",
-          }}
-        />
-        <ProductListing
-          index={9}
-          product={{
-            category: "rolex",
-            description:
-              "this is hight quality watch you need to have in your packet",
-            images: [
-              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-            ],
-            name: "rolex detona",
-            price: 90000,
-            id: "uiiiii",
-          }}
-        />
-        <ProductListing
-          index={9}
-          product={{
-            category: "rolex",
-            description:
-              "this is hight quality watch you need to have in your packet",
-            images: [
-              "https://watchrapport.com/cdn/shop/products/4a67814350c74a4b7426743682bd25ec_800x.jpg?v=1692390641",
-            ],
-            name: "rolex detona",
-            price: 90000,
-            id: "uiiiii",
-          }}
-        />
-      </ProductsLine>
     </MaxWidthWrapper>
   );
 };

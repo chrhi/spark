@@ -76,7 +76,8 @@ const page: FC<PageProps> = async ({ params }) => {
               index={index}
               product={{
                 CompareAtPrice: item.CompareAtPrice,
-                continue_selling_when_out_of_stock: item.CompareAtPrice,
+                continue_selling_when_out_of_stock:
+                  item.continue_selling_when_out_of_stock,
                 CostPerItem: item.CostPerItem,
                 category: item.category,
                 description: item.description ? item.description : "",
@@ -97,7 +98,8 @@ const page: FC<PageProps> = async ({ params }) => {
               index={index}
               product={{
                 CompareAtPrice: item.CompareAtPrice,
-                continue_selling_when_out_of_stock: item.CompareAtPrice,
+                continue_selling_when_out_of_stock:
+                  item.continue_selling_when_out_of_stock,
                 CostPerItem: item.CostPerItem,
                 category: item.category,
                 description: item.description ? item.description : "",
