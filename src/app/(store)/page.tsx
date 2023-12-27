@@ -37,6 +37,9 @@ export default async function Home() {
                 key={item.id + "best sells"}
                 index={index}
                 product={{
+                  CompareAtPrice: item.CompareAtPrice,
+                  continue_selling_when_out_of_stock: item.CompareAtPrice,
+                  CostPerItem: item.CostPerItem,
                   category: item.category,
                   description: item.description ? item.description : "",
                   images: item.images

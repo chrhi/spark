@@ -21,6 +21,9 @@ export type Product = {
   description: string;
   images: any[];
   category: string;
+  CompareAtPrice: string;
+  CostPerItem: string;
+  continue_selling_when_out_of_stock: string;
 };
 
 export interface StoredFile {
