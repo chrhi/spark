@@ -87,9 +87,6 @@ const AddProductForm: FC = ({}) => {
                   images,
                 });
                 router.push("/admin/products");
-                console.log("this is the images we have in here");
-                console.log(data);
-                console.log(images);
               }),
 
             {

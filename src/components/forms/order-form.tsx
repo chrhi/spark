@@ -24,8 +24,10 @@ import {
 } from "@/components/ui/select";
 import { ALGERIASTATES } from "@/constants";
 import { useEffect, useState } from "react";
+import { useStore } from "@/lib/zustand/store";
 
 export function OrderForm() {
+  const products = useStore((state) => state.card);
   // 1. Define your form.
   const form = useForm<z.infer<typeof orderSchema>>({
     resolver: zodResolver(orderSchema),
@@ -38,6 +40,8 @@ export function OrderForm() {
     console.log(values);
   }
 
+  const baladia = form.watch("willaya");
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -48,7 +52,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="abdellah" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -61,7 +65,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="chehri" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -74,7 +78,7 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input className="h-12" placeholder="05......" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,7 +91,11 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input
+                  className="h-12"
+                  placeholder="example@gmail.com"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -106,8 +114,8 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full ">
-                      <SelectValue placeholder="Alger" />
+                    <SelectTrigger className="w-full h-12">
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {ALGERIASTATES.map((item) => (
@@ -136,12 +144,12 @@ export function OrderForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full ">
+                    <SelectTrigger className="w-full h-12 ">
                       <SelectValue placeholder="Theme" />
                     </SelectTrigger>
                     <SelectContent>
                       {ALGERIASTATES.filter(
-                        (item) => item.name === form.getValues("willaya")
+                        (item) => item.name === baladia
                       )[0]?.baladia?.map((baladia) => {
                         return (
                           <SelectItem key={baladia + "willaya"} value={baladia}>
@@ -165,14 +173,18 @@ export function OrderForm() {
             <FormItem>
               <FormLabel>Street</FormLabel>
               <FormControl>
-                <Input placeholder="your address" {...field} />
+                <Input className="h-12" placeholder="your address" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button className="w-full bg-black " type="submit">
+        <Button
+          disabled={products.length === 0}
+          className="w-full bg-black h-12 "
+          type="submit"
+        >
           Confirme Order
         </Button>
       </form>

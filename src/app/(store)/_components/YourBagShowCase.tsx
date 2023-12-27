@@ -6,6 +6,8 @@ import { Minus, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Icons } from "@/components/Icons";
+import { formatPrice } from "@/lib/utils";
 
 interface YourBagShowCaseAbdullahProps {}
 
@@ -15,17 +17,37 @@ const YourBagShowCase: FC = ({}) => {
   const addQuantity = useStore((state) => state.addQuantity);
 
   const RemoveProductToCard = useStore((state) => state.RemoveProductToCard);
+  if (products.length === 0) {
+    return (
+      <div className="w-full h-full flex flex-col items-start p-4">
+        <div className="w-full h-[100px] flex flex-col gap-y-2">
+          <h1 className="text-2xl font-bold ">Your Shopping bag</h1>
+        </div>
+
+        <div className="w-full my-auto h-full flex flex-col gap-y-2 justify-center items-center ">
+          <Icons.basket className=" text-gray-700" size={48} strokeWidth={3} />
+
+          <p className="text-xl font-semibold text-center text-gray-700">
+            Your card is empty{" "}
+          </p>
+          <p className="text-center text-gray-600 text-lg">
+            Add items to your cart to checkout
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="w-full h-full flex flex-col items-start p-4">
       <div className="w-full h-[100px] flex flex-col gap-y-2">
         <h1 className="text-2xl font-bold ">Your Shopping bag</h1>
         <p className="text-lg font-semibold text-gray-700 ">total amout</p>
         <p>
-          {" "}
-          dz{" "}
-          {products
-            .map((item) => item.product.price)
-            .reduce((total, current) => Number(total) + Number(current))}
+          {formatPrice(
+            products
+              .map((item) => item.product.price)
+              .reduce((total, current) => Number(total) + Number(current))
+          )}
         </p>
       </div>
 
@@ -33,7 +55,7 @@ const YourBagShowCase: FC = ({}) => {
         <ul role="list" className="-my-6 divide-y divide-gray-200">
           {products.map((product) => (
             <li key={product?.product?.id} className="flex py-6">
-              <div className="h-24 w-24 reltive flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+              <div className="h-24 w-24 relative flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                 <Image
                   src={product?.product?.images[0].url as string}
                   alt={product?.product?.name}
@@ -50,7 +72,7 @@ const YourBagShowCase: FC = ({}) => {
                         {product?.product?.name}
                       </a>
                     </h3>
-                    <p className="ml-4">{product.product.price}</p>
+                    <p className="ml-4">{formatPrice(product.product.price)}</p>
                   </div>
                   <p className="mt-1 text-sm text-gray-500">
                     {product?.product?.category}
