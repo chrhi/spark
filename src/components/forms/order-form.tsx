@@ -25,19 +25,25 @@ import {
 import { ALGERIASTATES } from "@/constants";
 import { useEffect, useState } from "react";
 import { useStore } from "@/lib/zustand/store";
+import axios from "axios";
+import { Icons } from "../Icons";
 
 export function OrderForm() {
   const products = useStore((state) => state.card);
+  const [isLoading, setIsLoading] = useState(false);
   // 1. Define your form.
   const form = useForm<z.infer<typeof orderSchema>>({
     resolver: zodResolver(orderSchema),
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof orderSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof orderSchema>) {
+    setIsLoading(true);
+    await axios.post("/api/store/order/create", {
+      ...values,
+      products,
+    });
+    setIsLoading(false);
   }
 
   const baladia = form.watch("willaya");
@@ -181,11 +187,18 @@ export function OrderForm() {
         />
 
         <Button
-          disabled={products.length === 0}
+          disabled={products.length === 0 || isLoading}
           className="w-full bg-black h-12 "
           type="submit"
         >
-          Confirme Order
+          {isLoading && (
+            <Icons.spinner
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
+            />
+          )}
+          Update
+          <span className="sr-only">create an order</span>
         </Button>
       </form>
     </Form>

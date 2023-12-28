@@ -17,7 +17,7 @@ enum STATUS {
 }
 
 model Collection {
-  id          String      @id @default(uuid())
+  id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   title       String
   description String
@@ -25,58 +25,46 @@ model Collection {
 }
 
 model Product {
-  id             String      @id @default(uuid())
-  createdAt      DateTime    @default(now())
-  name           String
-  description    String?
-  status         STATUS      @default(ACTIVE)
-  images         Json?
-  price          String
-  CompareAtPrice String
-  CostPerItem    String
-  inventory      Int         @default(1)
-  category       String
-  subCategory    String
+  id                                 String   @id @default(uuid())
+  createdAt                          DateTime @default(now())
+  name                               String
+  description                        String?
+  status                             STATUS   @default(ACTIVE)
+  images                             Json?
+  price                              String
+  CompareAtPrice                     String
+  CostPerItem                        String
+  inventory                          Int      @default(1)
+  category                           String
+  subCategory                        String
   continue_selling_when_out_of_stock Boolean  @default(false)
 }
 
 model Order {
-  id            String      @id @default(uuid())
-  createdAt     DateTime    @default(now())
-  firstName     String 
-  lastName      String
-  phone_number  Int
-  email         String
-  willaya       String
-  baladia       String
-  street        String
-  products      String
-  total         Float
-  shipping      Float
-  confirmed     Boolean?
-  retured       Boolean?
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  firstName    String
+  lastName     String
+  phone_number Int
+  email        String
+  willaya      String
+  baladia      String
+  street       String
+  products     Json
+  total        Float
+  shipping     Float
+  confirmed    Boolean?
+  retured      Boolean?
 }
 
 model Customer {
- id          String      @id @default(uuid())
-  createdAt DateTime @default(now())
-
-  name        String
-  description String?
-  status      STATUS  @default(ACTIVE)
-  images      Json?
-  price       String
-
-  inventory Int @default(1)
-
-  category String[]
-}
-
-
-model sale {
-  id          String      @id @default(uuid()) 
-  createdAt DateTime @default(now())
-  productsId String[]
-  
-
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  firstName    String
+  lastName     String
+  phone_number Int
+  email        String
+  willaya      String
+  baladia      String
+  street       String
 }
