@@ -38,6 +38,21 @@ export interface StoredFile {
   url: string;
 }
 
+export type ProductEntry = {
+  product: {
+    CompareAtPrice: string;
+    continue_selling_when_out_of_stock: boolean;
+    CostPerItem: string;
+    category: string;
+    description: string;
+    id: string;
+    images: StoredFile[]; // You might want to replace this with the actual type for images
+    name: string;
+    price: string;
+  };
+  qnt: number;
+};
+
 export interface Option {
   label: string;
   value: string;

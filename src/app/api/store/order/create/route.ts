@@ -1,7 +1,5 @@
-import { productSchema } from "@/lib/validators/product";
-
 import { db } from "@/lib/db";
-import { revalidatePath } from "next/cache";
+import { ProductEntry } from "@/types";
 
 export async function POST(request: Request) {
   // verify auth
@@ -15,17 +13,17 @@ export async function POST(request: Request) {
   console.log(payload);
   console.log(payload?.products);
 
+  const products = payload?.products as ProductEntry[];
+
   await db.order.create({
     data: {
       baladia: payload.baladia,
       email: payload.email,
       firstName: payload.firstName,
       lastName: payload.lastName,
-      phone_number: payload.phone_number,
+      phone_number: payload.phoneNumber,
       street: payload.street,
       willaya: payload.willaya,
-      total: payload.total,
-      shipping: payload.shipping,
       products: JSON.stringify(payload.products),
     },
   });
@@ -38,29 +36,36 @@ export async function POST(request: Request) {
       email: payload.email,
       firstName: payload.firstName,
       lastName: payload.lastName,
-      phone_number: payload.phone_number,
+      phone_number: payload.phoneNumber,
       street: payload.street,
       willaya: payload.willaya,
     },
   });
 
   // reduce the amount of products availabe for sale
+  Promise.all(
+    products.map(async (item) => {
+      const currentProduct = await db.product.findUnique({
+        where: {
+          id: item.product.id,
+        },
+      });
+      if (!currentProduct) {
+        throw new Error(
+          "something went wrong on the server during the order creation"
+        );
+      }
 
-  payload?.products.map(item => {
-    
-    
-  })
-
-  const currentProduct = await db.product.findUnique({
-    where :{
-      id : payload.
-    }
-  })
-
-  // do the real time
-
-  revalidatePath("/");
-  revalidatePath("/admin/products");
+      const update = await db.product.update({
+        where: {
+          id: item.product.id,
+        },
+        data: {
+          inventory: currentProduct?.inventory - item.qnt,
+        },
+      });
+    })
+  );
 
   return new Response("OK", {
     status: 200,

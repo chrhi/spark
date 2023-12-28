@@ -10,7 +10,7 @@ const SwitchToStoreAbdullahProps: FC = ({}) => {
   const router = useRouter();
 
   return (
-    <Button onClick={() => router.push("/")} size={"lg"}>
+    <Button className="border" onClick={() => router.push("/")} size={"lg"}>
       switch to store
     </Button>
   );

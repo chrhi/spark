@@ -10,8 +10,6 @@ const Header: FC = ({}) => {
       <div className="mx-auto px-4  w-full items-center h-full flex justify-between">
         <Logo />
 
-        <Search />
-
         <SwitchToStoreAbdullahProps />
       </div>
     </nav>

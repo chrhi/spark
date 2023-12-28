@@ -45,14 +45,14 @@ model Order {
   createdAt    DateTime @default(now())
   firstName    String
   lastName     String
-  phone_number Int
+  phone_number String
   email        String
   willaya      String
   baladia      String
   street       String
   products     Json
-  total        Float
-  shipping     Float
+  total        Float?
+  shipping     Float?
   confirmed    Boolean?
   retured      Boolean?
 }
@@ -62,7 +62,7 @@ model Customer {
   createdAt    DateTime @default(now())
   firstName    String
   lastName     String
-  phone_number Int
+  phone_number String
   email        String
   willaya      String
   baladia      String

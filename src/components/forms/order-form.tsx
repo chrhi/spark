@@ -27,23 +27,27 @@ import { useEffect, useState } from "react";
 import { useStore } from "@/lib/zustand/store";
 import axios from "axios";
 import { Icons } from "../Icons";
+import { toast } from "sonner";
 
 export function OrderForm() {
   const products = useStore((state) => state.card);
   const [isLoading, setIsLoading] = useState(false);
-  // 1. Define your form.
   const form = useForm<z.infer<typeof orderSchema>>({
     resolver: zodResolver(orderSchema),
   });
-
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof orderSchema>) {
     setIsLoading(true);
-    await axios.post("/api/store/order/create", {
-      ...values,
-      products,
-    });
-    setIsLoading(false);
+    try {
+      await axios.post("/api/store/order/create", {
+        ...values,
+        products,
+      });
+      toast("new order submited");
+    } catch (err) {
+      toast("something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const baladia = form.watch("willaya");
@@ -197,7 +201,7 @@ export function OrderForm() {
               aria-hidden="true"
             />
           )}
-          Update
+          Order Now
           <span className="sr-only">create an order</span>
         </Button>
       </form>

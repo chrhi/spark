@@ -36,14 +36,6 @@ export function Sidebar({ className }: SidebarProps) {
               <Icons.Order className="w-4 h-4 mr-2 " />
               Commandes
             </Button>
-            <Button
-              onClick={() => router.push("/admin/customers")}
-              variant={path.includes("/customers") ? "secondary" : "ghost"}
-              className="w-full justify-start"
-            >
-              <Icons.Customers className="w-4 h-4 mr-2 " />
-              Clients
-            </Button>
           </div>
         </div>
         <div className="px-3 py-2">
@@ -69,24 +61,7 @@ export function Sidebar({ className }: SidebarProps) {
               <Icons.collection className="w-4 h-4 mr-2 " />
               Collections
             </Button>
-            <Button
-              onClick={() => router.push("/admin/editor")}
-              variant={path.includes("/admin/editor") ? "secondary" : "ghost"}
-              className="w-full justify-start"
-            >
-              <Icons.Banner className="w-4 h-4 mr-2 " />
-              Éditeur
-            </Button>
-            <Button
-              onClick={() => router.push("/admin/analitycs")}
-              variant={
-                path.includes("/admin/analitycs") ? "secondary" : "ghost"
-              }
-              className="w-full justify-start"
-            >
-              <Icons.Analytics className="w-4 h-4 mr-2 " />
-              Analytique
-            </Button>
+
             <Button
               onClick={() => router.push("/admin/settings")}
               variant={path === "/analitycs" ? "secondary" : "ghost"}
