@@ -14,27 +14,39 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
+import { authSchema } from "@/lib/validators/auth";
+import axios from "axios";
+import React from "react";
+import { toast } from "sonner";
+import { Icons } from "../Icons";
+import { useRouter } from "next/navigation";
 
 export function AdminAccessForm() {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof authSchema>>({
+    resolver: zodResolver(authSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof authSchema>) {
+    setIsLoading(true);
+    try {
+      await axios.post("/api/admin/auth", {
+        ...values,
+      });
+      toast("sucess you will be redirected");
+      router.push("/admin");
+    } catch (err) {
+      toast("something went wrong");
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -42,12 +54,12 @@ export function AdminAccessForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input type="email" placeholder="admin@gmail.com" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -56,19 +68,30 @@ export function AdminAccessForm() {
         />
         <FormField
           control={form.control}
-          name="username"
+          name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input type="password" placeholder="shadcn" {...field} />
               </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" size={"lg"} type="submit">
+        <Button
+          disabled={isLoading}
+          className="w-full"
+          size={"lg"}
+          type="submit"
+        >
+          {isLoading && (
+            <Icons.spinner
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
+            />
+          )}
           Log in
         </Button>
       </form>

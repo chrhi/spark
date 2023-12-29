@@ -22,9 +22,6 @@ import {
 import { DataTable } from "../table/data-table";
 import { DataTableColumnHeader } from "../table/data-table-head";
 import { Order } from "@prisma/client";
-import { categories } from "@/constants/CATEGORIES";
-import Image from "next/image";
-import { StoredFile } from "@/types";
 
 interface ProductsTableShellProps {
   data: Order[];
@@ -128,13 +125,9 @@ export function OrderTableShell({ data, pageCount }: ProductsTableShellProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[160px]">
                   <DropdownMenuItem asChild>
-                    <Link href={`/admin/products/${row.original.id}`}>
-                      Edit
-                    </Link>
+                    <Link href={`/admin/orders/${row.original.id}`}>view</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href={`/product/${row.original.id}`}>View</Link>
-                  </DropdownMenuItem>
+
                   <DropdownMenuSeparator />
                 </DropdownMenuContent>
               </DropdownMenu>

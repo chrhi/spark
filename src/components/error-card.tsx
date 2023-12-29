@@ -46,7 +46,7 @@ export function ErrorCard({
           <Icon className="h-10 w-10" aria-hidden="true" />
         </div>
       </CardHeader>
-      <CardContent className="flex min-h-[176px] flex-col items-center justify-center space-y-2.5 text-center">
+      <CardContent className="flex h-[176px] flex-col items-center justify-center space-y-2.5 text-center">
         <CardTitle className="text-2xl">{title}</CardTitle>
         <CardDescription className="line-clamp-4">
           {description}

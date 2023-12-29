@@ -8,11 +8,6 @@ export async function POST(request: Request) {
 
   const payload = await request.json();
 
-  console.log("this is from the backend ");
-
-  console.log(payload);
-  console.log(payload?.products);
-
   const products = payload?.products as ProductEntry[];
 
   await db.order.create({
