@@ -1,12 +1,22 @@
 import { db } from "@/lib/db";
+import { NextRequest } from "next/server";
 
-export async function GET(req: Request) {
-  // varify auth
+export async function POST(request: NextRequest) {
+  const payload = await request.json();
 
-  const products = await db.product.findMany();
+  const { id } = payload;
+  if (!id || typeof id !== typeof "") {
+    return new Response("OK", {
+      status: 400,
+    });
+  }
 
-  return new Response(JSON.stringify(products), {
+  await db.product.delete({
+    where: { id },
+  });
+
+  console.log(id);
+  return new Response("OK", {
     status: 200,
-    statusText: "every thing went right",
   });
 }

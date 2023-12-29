@@ -25,6 +25,7 @@ import { Product } from "@prisma/client";
 import { categories } from "@/constants/CATEGORIES";
 import Image from "next/image";
 import { StoredFile } from "@/types";
+import axios from "axios";
 
 interface ProductsTableShellProps {
   data: Product[];
@@ -174,12 +175,11 @@ export function ProductsTableShell({
   function deleteSelectedRows() {
     toast.promise(
       Promise.all(
-        selectedRowIds.map((id) =>
-          //   deleteProductAction({
-          //     id,
-          //     storeId,
-          //   })
-          console.log(id)
+        selectedRowIds.map(
+          async (id) =>
+            await axios.post("/api/admin/products", {
+              id,
+            })
         )
       ),
       {

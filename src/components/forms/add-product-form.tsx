@@ -29,20 +29,19 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { productSchema } from "@/lib/validators/product";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileWithPreview, VarinatType } from "@/types";
 import { z } from "zod";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
 import { toast } from "sonner";
-import { catchError, isArrayOfFile } from "@/lib/utils";
+import { catchError, formatPrice, isArrayOfFile } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Icons } from "../Icons";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Zoom } from "../zoom-image";
 import Image from "next/image";
-import { categories } from "@/constants/CATEGORIES";
 import { Switch } from "../ui/switch";
 import { getSubcategories, productCategories } from "@/constants/products";
 
@@ -52,6 +51,7 @@ const { useUploadThing } = generateReactHelpers<OurFileRouter>();
 
 const AddProductForm: FC = ({}) => {
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
+
   const router = useRouter();
 
   const { isUploading, startUpload } = useUploadThing("imageUploader");
@@ -61,10 +61,20 @@ const AddProductForm: FC = ({}) => {
     defaultValues: {
       inventory: NaN,
       images: [],
+      status: "ACTIVE",
     },
   });
 
   const subcategories = getSubcategories(form.watch("category"));
+  const currentPrice = Number(form.watch("price"));
+  const currentCostPerItem = Number(form.watch("CostPerItem"));
+
+  const [profit, setProfit] = React.useState<number>();
+  const [margine, setMargine] = React.useState<number>(0);
+
+  useEffect(() => {
+    setProfit(currentPrice - currentCostPerItem);
+  }, [currentPrice, currentCostPerItem, form]);
 
   const { mutate, error, mutateAsync, isPending } = useMutation({
     mutationFn: async (data: Inputs) => {
@@ -105,8 +115,8 @@ const AddProductForm: FC = ({}) => {
           toast.success("Product added successfully.");
         }
 
-        // form.reset();
-        // setFiles(null);
+        form.reset();
+        setFiles(null);
       } catch (err) {
         catchError(err);
       }
@@ -294,12 +304,17 @@ const AddProductForm: FC = ({}) => {
                             <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
                               <Label>Profit</Label>
 
-                              <Input id="price" placeholder="DZD 0.00" />
+                              <Input
+                                id="profit"
+                                value={formatPrice(profit ? profit : 0)}
+                                disabled
+                                placeholder="DZD 0.00"
+                              />
                             </div>
                             <div className="w-full h-[50px] flex flex-col items-start gap-y-1">
                               <Label>Margin</Label>
 
-                              <Input id="price" placeholder="DZD 0.00" />
+                              <Input disabled id="price" placeholder="%2" />
                             </div>
                           </div>
                         </>

@@ -10,22 +10,24 @@ export async function POST(request: Request) {
 
   const payload = await request.json();
 
+  const data = productSchema.parse(payload);
+
   await db.product.create({
     data: {
-      CompareAtPrice: payload?.CompareAtPrice,
-      CostPerItem: payload?.CostPerItem,
-      name: payload?.name,
-      price: payload?.price,
-      description: payload?.description,
-      category: payload?.category,
-      images: JSON.stringify(payload?.images as string),
-      inventory: payload?.inventory,
-      subCategory: payload?.subcategory,
+      CompareAtPrice: data?.CompareAtPrice,
+      CostPerItem: data?.CostPerItem,
+      name: data?.name,
+      price: data?.price,
+      description: data?.description,
+      category: data?.category,
+      images: JSON.stringify(data?.images as string),
+      inventory: data?.inventory,
+      subCategory: data?.subcategory,
+      continue_selling_when_out_of_stock:
+        data?.continue_selling_when_out_of_stock,
+      status: data?.status,
     },
   });
-
-  revalidatePath("/");
-  revalidatePath("/admin/products");
 
   return new Response("OK", {
     status: 200,

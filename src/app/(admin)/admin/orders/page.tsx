@@ -85,8 +85,6 @@ const page: FC<PageProps> = async ({ searchParams }) => {
     name: name ? name : "",
   });
 
-  console.log(data);
-
   const pageCount = Math.ceil(data.length / limit);
 
   return (

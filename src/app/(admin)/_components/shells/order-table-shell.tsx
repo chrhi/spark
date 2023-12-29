@@ -145,10 +145,8 @@ export function OrderTableShell({ data, pageCount }: ProductsTableShellProps) {
       Promise.all(
         selectedRowIds.map(
           async (id) =>
-            await axios.delete("/api/store/order", {
-              headers: {
-                Cookie: `id=${id}`,
-              },
+            await axios.post("/api/admin/orders", {
+              id,
             })
         )
       ),
@@ -156,7 +154,7 @@ export function OrderTableShell({ data, pageCount }: ProductsTableShellProps) {
         loading: "Deleting...",
         success: () => {
           setSelectedRowIds([]);
-          return "Products deleted successfully.";
+          return "Orders deleted successfully.";
         },
         error: (err: unknown) => {
           setSelectedRowIds([]);

@@ -11,10 +11,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-enum STATUS {
-  ACTIVE
-  UNACTIVE
-}
+
 
 
 
@@ -23,7 +20,7 @@ model Product {
   createdAt                          DateTime @default(now())
   name                               String
   description                        String?
-  status                             STATUS   @default(ACTIVE)
+  status                             String   @default("ACTIVE")
   images                             Json?
   price                              String
   CompareAtPrice                     String
