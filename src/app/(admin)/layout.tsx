@@ -4,6 +4,12 @@ import { Sidebar } from "./_components/sidebar";
 
 import { Toaster } from "sonner";
 import Providers from "@/components/providers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "spark",
+  description: "Example dashboard app built using the components.",
+};
 
 export default function AdminLayout({
   children,

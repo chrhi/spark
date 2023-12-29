@@ -40,7 +40,7 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            Votre magasin{" "}
+            Magasin{" "}
           </h2>
           <div className="space-y-1">
             <Button
@@ -50,16 +50,6 @@ export function Sidebar({ className }: SidebarProps) {
             >
               <Icons.Prodcuts className="w-4 h-4 mr-2 " />
               Produits
-            </Button>
-            <Button
-              onClick={() => router.push("/admin/collections")}
-              variant={
-                path.includes("/admin/collections") ? "secondary" : "ghost"
-              }
-              className="w-full justify-start"
-            >
-              <Icons.collection className="w-4 h-4 mr-2 " />
-              Collections
             </Button>
 
             <Button

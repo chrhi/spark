@@ -16,13 +16,7 @@ enum STATUS {
   UNACTIVE
 }
 
-model Collection {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  title       String
-  description String
-  products    String[]
-}
+
 
 model Product {
   id                                 String   @id @default(uuid())

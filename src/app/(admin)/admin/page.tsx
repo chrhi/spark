@@ -12,11 +12,6 @@ import {
 import { Overview } from "../_components/overview";
 import { RecentSales } from "../_components/recent-sales";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
-};
-
 export default function DashboardPage() {
   return (
     <div className="hidden max-w-[1200px] mx-auto flex-col md:flex">
