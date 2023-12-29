@@ -1,7 +1,5 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Header from "./_components/Header";
 import { Sidebar } from "./_components/sidebar";
-
 import { Toaster } from "sonner";
 import Providers from "@/components/providers";
 import { Metadata } from "next";

@@ -25,6 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { AdminAccessForm } from "@/components/forms/admin-access-form";
 
 export default function Secret() {
   const [open, setOpen] = React.useState(false);
@@ -47,7 +48,7 @@ export default function Secret() {
               products into the store.
             </DialogDescription>
           </DialogHeader>
-          <ProfileForm />
+          <AdminAccessForm />
         </DialogContent>
       </Dialog>
     );
@@ -68,7 +69,7 @@ export default function Secret() {
             products into the store.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <AdminAccessForm />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -76,21 +77,5 @@ export default function Secret() {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  );
-}
-
-function ProfileForm({ className }: React.ComponentProps<"form">) {
-  return (
-    <form className={cn("grid items-start gap-4", className)}>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="shadcn@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@shadcn" />
-      </div>
-      <Button type="submit">Save changes</Button>
-    </form>
   );
 }

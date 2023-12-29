@@ -7,11 +7,6 @@ import { dashboardProductsSearchParamsSchema } from "@/lib/validators/params";
 import { DateRangePicker } from "../../_components/date-range-picker";
 import { DeleteProductDialog } from "../../_components/models/dete-product-model";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description: "Manage your products",
-};
-
 async function getData({
   start_date,
   end_date,
