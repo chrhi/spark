@@ -1,5 +1,4 @@
 import { Icons } from "@/components/Icons";
-import UpdateProductForm from "@/components/forms/update-product-form";
 import { buttonVariants } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { Order } from "@prisma/client";

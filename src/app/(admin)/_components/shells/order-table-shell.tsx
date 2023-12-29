@@ -22,6 +22,7 @@ import {
 import { DataTable } from "../table/data-table";
 import { DataTableColumnHeader } from "../table/data-table-head";
 import { Order } from "@prisma/client";
+import axios from "axios";
 
 interface ProductsTableShellProps {
   data: Order[];
@@ -142,12 +143,13 @@ export function OrderTableShell({ data, pageCount }: ProductsTableShellProps) {
   function deleteSelectedRows() {
     toast.promise(
       Promise.all(
-        selectedRowIds.map((id) =>
-          //   deleteProductAction({
-          //     id,
-          //     storeId,
-          //   })
-          console.log(id)
+        selectedRowIds.map(
+          async (id) =>
+            await axios.delete("/api/store/order", {
+              headers: {
+                Cookie: `id=${id}`,
+              },
+            })
         )
       ),
       {
