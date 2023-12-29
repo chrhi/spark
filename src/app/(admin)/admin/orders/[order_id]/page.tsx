@@ -188,7 +188,7 @@ const page: FC<PageProps> = async ({ params }) => {
             </CardContent>
           </Card>
 
-          <UpdateOrderStatus />
+          <UpdateOrderStatus id={order.id} />
         </div>
       </div>
     </div>
