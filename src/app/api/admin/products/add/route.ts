@@ -8,9 +8,7 @@ export async function POST(request: Request) {
 
   // validate the request
 
-  const payload = await request.json();
-
-  const data = productSchema.parse(payload);
+  const data = await request.json();
 
   await db.product.create({
     data: {

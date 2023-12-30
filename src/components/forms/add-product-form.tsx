@@ -120,9 +120,6 @@ const AddProductForm: FC = ({}) => {
 
           toast.success("Product added successfully.");
         }
-
-        form.reset();
-        setFiles(null);
       } catch (err) {
         catchError(err);
       }
