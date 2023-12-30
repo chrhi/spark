@@ -24,7 +24,9 @@ const SwitchToStoreAbdullahProps: FC = ({}) => {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
 
-        <DropdownMenuItem>GitHub</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="https://github.com/chrhi">GitHub</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <Link href={"/"}> Log out</Link>
           Support
