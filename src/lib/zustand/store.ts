@@ -19,7 +19,7 @@ export const useStore = create<BearState>((set, get) => ({
         get().addQuantity(product.id);
 
         toast(`product already exists`, {
-          description: `${product.name} has been added`,
+          position: "bottom-center",
           action: {
             label: "Undo",
             onClick: () => get().reduceQuantity(product.id),

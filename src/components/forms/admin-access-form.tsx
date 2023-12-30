@@ -39,12 +39,19 @@ export function AdminAccessForm() {
       await axios.post("/api/admin/auth", {
         ...values,
       });
-      toast("sucess you will be redirected");
-      window.location.reload();
+
+      toast("sucess you will be redirected", {
+        position: "bottom-center",
+      });
     } catch (err) {
-      toast("something went wrong");
+      toast("something went wrong", {
+        position: "bottom-center",
+      });
       console.log(err);
     } finally {
+      router.push("/admin", {
+        scroll: false,
+      });
       setIsLoading(false);
     }
   }
