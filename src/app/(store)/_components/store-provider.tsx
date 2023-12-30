@@ -6,12 +6,12 @@ import { Next13ProgressBar } from "next13-progressbar";
 
 const queryClient = new QueryClient();
 
-const Providers = ({ children }: PropsWithChildren) => {
+const StoreProvider = ({ children }: PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Next13ProgressBar
         height="5px"
-        color="#22c55e"
+        color="#dc2626"
         options={{ showSpinner: false }}
         showOnShallow
       />
@@ -20,4 +20,4 @@ const Providers = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default Providers;
+export default StoreProvider;

@@ -62,11 +62,12 @@ const Bag: FC = ({}) => {
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
                     {products.map((product) => (
                       <li key={product?.product?.id} className="flex py-6">
-                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img
+                        <div className="h-24  w-24 relative flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                          <Image
                             src={product?.product?.images[0].url as string}
                             alt={product?.product?.name}
                             className="h-full w-full object-cover object-center"
+                            fill
                           />
                         </div>
 
