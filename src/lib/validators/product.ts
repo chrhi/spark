@@ -1,5 +1,3 @@
-"use client";
-
 import * as z from "zod";
 
 export const productSchema = z.object({
