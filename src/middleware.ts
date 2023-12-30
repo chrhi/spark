@@ -13,11 +13,11 @@ export async function middleware(request: NextRequest) {
 
   const url = request.url;
 
-  if (request.nextUrl.pathname.startsWith("/admin") && !verifiedToken) {
-    return NextResponse.redirect(new URL("/", url));
-  }
-
   if (!request.nextUrl.pathname.startsWith("/admin") && verifiedToken) {
     return NextResponse.redirect(new URL("/admin", url));
+  }
+
+  if (request.nextUrl.pathname.startsWith("/admin") && !verifiedToken) {
+    return NextResponse.redirect(new URL("/", url));
   }
 }

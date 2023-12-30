@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-
-import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,11 +20,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { AdminAccessForm } from "@/components/forms/admin-access-form";
-
-import Link from "next/link";
 
 export default function Secret() {
   const [open, setOpen] = React.useState(false);
