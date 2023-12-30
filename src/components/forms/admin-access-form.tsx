@@ -40,7 +40,7 @@ export function AdminAccessForm() {
         ...values,
       });
       toast("sucess you will be redirected");
-      router.push("/admin");
+      window.location.reload();
     } catch (err) {
       toast("something went wrong");
       console.log(err);

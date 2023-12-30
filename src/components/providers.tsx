@@ -12,7 +12,7 @@ const Providers = ({ children }: PropsWithChildren) => {
     <QueryClientProvider client={queryClient}>
       <Next13ProgressBar
         height="5px"
-        color="#3b82f6"
+        color="#22c55e"
         options={{ showSpinner: false }}
         showOnShallow
       />
