@@ -1,7 +1,6 @@
 "use client";
 
 import type { FC } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,13 +8,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
-
-interface SwitchToStoreAbdullahProps {}
 
 const SwitchToStoreAbdullahProps: FC = ({}) => {
   return (
