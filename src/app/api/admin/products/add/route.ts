@@ -27,6 +27,9 @@ export async function POST(request: Request) {
     },
   });
 
+  revalidatePath("/");
+  revalidatePath("/admin/products");
+
   return new Response("OK", {
     status: 200,
   });

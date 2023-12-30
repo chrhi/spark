@@ -10,9 +10,6 @@ export async function POST(request: Request) {
 
   const payload = await request.json();
 
-  console.log("this is what we get from the body");
-  console.log(payload);
-
   await db.product.update({
     data: {
       CompareAtPrice: payload?.CompareAtPrice,
