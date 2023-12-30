@@ -3,7 +3,13 @@
 import type { FC } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -484,25 +490,33 @@ const AddProductForm: FC = ({}) => {
             />
           </div>
         </div>
-        <div className="w-full h-[100px] bg-white rounded-lg shadow p-2 flex items-center justify-end">
-          <Button
-            type="submit"
-            onClick={() =>
-              void form.trigger(["name", "description", "price", "inventory"])
-            }
-            className="w-fit"
-            disabled={isPending}
-          >
-            {isPending && (
-              <Icons.spinner
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
-            Publish
-            <span className="sr-only">Add Product</span>
-          </Button>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>save chanages</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Card Content</p>
+          </CardContent>
+          <CardFooter>
+            <Button
+              type="submit"
+              onClick={() =>
+                void form.trigger(["name", "description", "price", "inventory"])
+              }
+              className="w-fit"
+              disabled={isPending}
+            >
+              {isPending && (
+                <Icons.spinner
+                  className="mr-2 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
+              )}
+              Publish
+              <span className="sr-only">Add Product</span>
+            </Button>
+          </CardFooter>
+        </Card>
       </form>
     </Form>
   );
