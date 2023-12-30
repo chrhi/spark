@@ -18,9 +18,9 @@ export default function AdminLayout({
     <Providers>
       <Header />
       <div className="flex w-full min-h-screen">
-        <Sidebar className="block w-[200px] fixed left-0  top-16 bottom-0 " />
+        <Sidebar className=" hidden md:block w-[200px] fixed left-0  top-16 bottom-0 " />
 
-        <main className="w-[calc(100%-200px)] ml-[200px] bg-gray-50 ">
+        <main className=" w-full md:w-[calc(100%-200px)] md:ml-[200px] bg-gray-50 ">
           {children}
         </main>
         <Toaster />

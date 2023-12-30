@@ -1,4 +1,3 @@
-import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +12,7 @@ const Logo: FC = ({}) => {
           className="hover:bg-black/40 scale-105 duration-200 transition-all"
           size="icon"
         >
-          <Image alt="logo" src={"/logo2.png"} width={40} height={40} />
+          <Image alt="logo" src={"/logo-white.png"} width={40} height={40} />
         </Button>
       </div>
     </Link>

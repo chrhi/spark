@@ -7,7 +7,7 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
-import { catchError, formatDate, formatPrice } from "@/lib/utils";
+import { catchError, formatDate, formatPrice, truncate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -93,7 +93,7 @@ export function ProductsTableShell({
                 height={40}
                 className="rounded-lg"
               />
-              <p>{row.original.name}</p>
+              <p>{truncate(row.original.name, 10)}</p>
             </div>
           );
         },

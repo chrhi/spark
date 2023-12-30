@@ -19,6 +19,7 @@ import {
   ShoppingCart,
   Filter,
   Trash,
+  Menu,
 } from "lucide-react";
 
 export const Icons = {
@@ -189,4 +190,5 @@ export const Icons = {
   basket: ShoppingCart,
   filter: Filter,
   trash: Trash,
+  menu : Menu 
 };
